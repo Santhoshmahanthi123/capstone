@@ -11,9 +11,19 @@ app.use(cors());
 const userRoutes = require('./routes/user');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const development = process.env.NODE_ENV;
 console.log(process.env.DBUSER, process.env.DBPASSWORD);
+console.log(process.env.NODE_ENV)
 
-mongoose.connect('mongodb://'+ process.env.DBUSER + ':'+ process.env.DBPASSWORD +'@ds135993.mlab.com:35993/capstone',{ useNewUrlParser: true });
+// if(process.env.NODE_ENV===development)
+// {
+//     mongoose.connect('mongodb://localhost:27017/capstone',{useNewUrlParser: true})
+// }
+// else {
+    mongoose.connect('mongodb://'+ process.env.DBUSER +':'+ process.env.DBPASSWORD+'@ds135993.mlab.com:35993/capstone',{useNewUrlParser:true });
+// }
+
+
 //removing deprecation warnings 
 mongoose.Promise = global.Promise;
 //gives logs for nodejs like requests
