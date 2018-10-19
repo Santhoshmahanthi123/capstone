@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const development = process.env.NODE_ENV;
 console.log(process.env.DBUSER, process.env.DBPASSWORD);
-console.log(process.env.NODE_ENV)
+console.log( process.env.JWTKEY);
 
 // if(process.env.NODE_ENV===development)
 // {
