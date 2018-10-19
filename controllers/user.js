@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 exports.user_signup = (req,res,next) => {
 
-    User.find({email:req.body.email})
+    User.find({email:req.body.email},{mobile:req.body.mobile})
     .then(user =>{
         //user shouldn't be an empty array
         if(user.length >= 1){
             //409 is a conflict
             return res.status(409).json({
-                message : 'Mail exists!'
+                message : 'E-mail or mobile number is already exists, please try with different email and phone!'
             });
         }
         else{
@@ -27,6 +26,10 @@ exports.user_signup = (req,res,next) => {
                     const user = new User({
                         _id : new mongoose.Types.ObjectId(),
                         email : req.body.email,
+                        name : req.body.name,
+                        address : req.body.address,
+                        mobile : req.body.mobile,
+                        pincode : req.body.pincode,
                         password : hash
                     });
                     user
@@ -50,49 +53,6 @@ exports.user_signup = (req,res,next) => {
     });
 }
 
-exports.user_login = (req,res,next) =>{
-
-    User.find({ email : req.body.email})
-    .exec()
-    .then(user =>{
-        if(user.length < 1){
-            return res.status(401).json({
-                message : 'Authentication failed!'
-            });
-        }
-        bcrypt.compare(req.body.password,user[0].password,(err,result) =>{
-            if(err){
-                return res.status(401).json({
-                    message : 'Authentication failed!'
-                });
-            }
-            if(result){
-                const token = jwt.sign({
-                    email : user[0].email,
-                    userId : user[0]._id
-                },
-                process.env.JWTKEY,
-                {
-                    expiresIn:"1h"
-                }
-               );
-                return res.status(200).json({
-                    message:'Authentication successful, User successfully logged in!',
-                    token : token
-                });
-            }
-            res.status(401).json({
-                message : 'Authentication failed!'
-            });
-        })
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error : err
-        });
-    });
-}
 
 exports.user_delete = (req,res,next) => {
     User.remove({_id:req.params.userId})
@@ -112,7 +72,7 @@ exports.user_delete = (req,res,next) => {
 
 exports.users_get = (req,res,next) => {
     User.find()
-    .select('email')
+    .select('email name address mobile pincode')
     .exec()
     .then(result => {
         // console.log('Users found!')

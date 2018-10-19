@@ -1,22 +1,19 @@
 require('dotenv').config();
-var cors = require('cors');
+const cors = require('cors');
 const express = require('express');
 
-const port = process.env.PORT || 3030;
+const port = process.env.PORT || 3000;
 
 const app = express();
 const morgan = require('morgan');
 app.use(cors());
 
-const productRoutes = require('./routes/products');
-const orderRoutes = require('./routes/orders');
 const userRoutes = require('./routes/user');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 console.log(process.env.DBUSER, process.env.DBPASSWORD);
-console.log( process.env.JWTKEY);
 
-mongoose.connect('mongodb://'+ process.env.DBUSER +':'+ process.env.DBPASSWORD +'@ds131903.mlab.com:31903/restful-api',{ useNewUrlParser: true });
+mongoose.connect('mongodb://'+ process.env.DBUSER + ':'+ process.env.DBPASSWORD +'@ds135993.mlab.com:35993/capstone',{ useNewUrlParser: true });
 //removing deprecation warnings 
 mongoose.Promise = global.Promise;
 //gives logs for nodejs like requests
@@ -39,9 +36,7 @@ app.use((req,res,next)=>{
  next();
 })
 
-app.use('/products',productRoutes);
 
-app.use('/orders',orderRoutes);
 
 app.use('/user',userRoutes);
 
