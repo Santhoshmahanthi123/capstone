@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import {Link } from 'react-router-dom';
 import "./Home.css";
 import { Layout, Menu, Breadcrumb, Icon } from "antd";
 import "antd/dist/antd.css";
 import Search from "./Search";
+import Signup from "./Signup";
 import ImageSlider from "./ImageSlider";
+import Location from "./Location";
 import Cards from "./Cards";
+import Routes from "../Routes";
+import Login from "./Login";
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
@@ -30,7 +35,7 @@ class Home extends Component {
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1">
               <Icon type="pie-chart" />
-              <span>Home</span>
+              <span><Link to="/">Home</Link></span>
             </Menu.Item>
             {/* <Menu.Item key="2">
               <Icon type="desktop" />
@@ -45,7 +50,7 @@ class Home extends Component {
                 </span>
               }
             >
-              <Menu.Item key="2">Snacks</Menu.Item>
+              <Menu.Item key="2"><Link to="/Food/Snacks">Snacks</Link></Menu.Item>
               <Menu.Item key="3">Beverages</Menu.Item>
               <Menu.Item key="4">HomeMade</Menu.Item>
             </SubMenu>
@@ -77,20 +82,28 @@ class Home extends Component {
               <Icon type="file" />
               <span>Report Us</span>
             </Menu.Item>
+            <Menu.Item key="11">
+              <Icon type="home" />
+              <span><Link to="/Login">Login</Link></span>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
           {/* <Header style={{ background: '#fff', padding: 0 }} /> */}
-          <Search style={{ background: "#fff", padding: 0, marginLeft: 100 }} />
+          {/* <Location /> */}
+          <Search style={{ background: "#fff", padding: 0, marginLeft: 200 }} />
 
           <Content style={{ margin: "0 16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }} />
             <div style={{ padding: 24, background: "#fff" }}>
-              <ImageSlider />
+              
+              <Routes/>
+              <Signup />
+              {/* <Login /> */}
             </div>
-            <div style={{ padding: 24, background: "#fff" }}>
-                <Cards />
-            </div>
+            {/* <div style={{ padding: 24, background: "#fff" }}>
+               
+            </div> */}
           </Content>
           <Footer style={{ textAlign: "center" }}>
             Ant Design ©2018 Created by Ant UED
