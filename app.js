@@ -15,13 +15,10 @@ const development = process.env.NODE_ENV;
 console.log(process.env.DBUSER, process.env.DBPASSWORD);
 console.log( process.env.JWTKEY);
 
-// if(process.env.NODE_ENV===development)
-// {
-//     mongoose.connect('mongodb://localhost:27017/capstone',{useNewUrlParser: true})
-// }
-// else {
-    mongoose.connect('mongodb://'+ process.env.DBUSER +':'+ process.env.DBPASSWORD+'@ds135993.mlab.com:35993/capstone',{useNewUrlParser:true });
-// }
+console.log(process.env.DATABASEURL);
+mongoose.connect(process.env.DATABASEURL,{useNewUrlParser: true})
+
+    // mongoose.connect('mongodb://'+ process.env.DBUSER +':'+ process.env.DBPASSWORD+'@ds135993.mlab.com:35993/capstone',{useNewUrlParser:true });
 
 
 //removing deprecation warnings 
