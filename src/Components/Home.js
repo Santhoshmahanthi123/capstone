@@ -1,0 +1,104 @@
+import React, { Component } from "react";
+import "./Home.css";
+import { Layout, Menu, Breadcrumb, Icon } from "antd";
+import "antd/dist/antd.css";
+import Search from "./Search";
+import ImageSlider from "./ImageSlider";
+import Cards from "./Cards";
+const { Header, Content, Footer, Sider } = Layout;
+const SubMenu = Menu.SubMenu;
+
+class Home extends Component {
+  state = {
+    collapsed: false
+  };
+
+  onCollapse = collapsed => {
+    console.log(collapsed);
+    this.setState({ collapsed });
+  };
+
+  render() {
+    return (
+      <Layout style={{ minHeight: "100vh" }}>
+        <Sider
+          collapsible
+          collapsed={this.state.collapsed}
+          onCollapse={this.onCollapse}
+        >
+          <div className="logo" />
+          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+            <Menu.Item key="1">
+              <Icon type="pie-chart" />
+              <span>Home</span>
+            </Menu.Item>
+            {/* <Menu.Item key="2">
+              <Icon type="desktop" />
+              <span>Option 2</span>
+            </Menu.Item> */}
+            <SubMenu
+              key="sub1"
+              title={
+                <span>
+                  <Icon type="user" />
+                  <span>Food</span>
+                </span>
+              }
+            >
+              <Menu.Item key="2">Snacks</Menu.Item>
+              <Menu.Item key="3">Beverages</Menu.Item>
+              <Menu.Item key="4">HomeMade</Menu.Item>
+            </SubMenu>
+            <SubMenu
+              key="sub2"
+              title={
+                <span>
+                  <Icon type="team" />
+                  <span>Medicine</span>
+                </span>
+              }
+            >
+              <Menu.Item key="5">Emergency</Menu.Item>
+              <Menu.Item key="6">Vitamin &amp; Supplements</Menu.Item>
+            </SubMenu>
+            {/* <SubMenu
+              key="sub3"
+              title={<span><Icon type="user" /><span>Misc</span></span>}
+            > */}
+            <Menu.Item key="7">
+              {" "}
+              <Icon type="file" />
+              <span>Misc</span>
+            </Menu.Item>
+            {/* <Menu.Item key="8">Bill</Menu.Item>
+              <Menu.Item key="9">Alex</Menu.Item> */}
+            {/* </SubMenu> */}
+            <Menu.Item key="10">
+              <Icon type="file" />
+              <span>Report Us</span>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          {/* <Header style={{ background: '#fff', padding: 0 }} /> */}
+          <Search style={{ background: "#fff", padding: 0, marginLeft: 100 }} />
+
+          <Content style={{ margin: "0 16px" }}>
+            <Breadcrumb style={{ margin: "16px 0" }} />
+            <div style={{ padding: 24, background: "#fff" }}>
+              <ImageSlider />
+            </div>
+            <div style={{ padding: 24, background: "#fff" }}>
+                <Cards />
+            </div>
+          </Content>
+          <Footer style={{ textAlign: "center" }}>
+            Ant Design ©2018 Created by Ant UED
+          </Footer>
+        </Layout>
+      </Layout>
+    );
+  }
+}
+
+export default Home;
