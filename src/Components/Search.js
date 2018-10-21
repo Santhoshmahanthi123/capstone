@@ -1,41 +1,23 @@
-import React, { Component } from 'react';
-import './Search.css'
-import { AutoComplete, Icon } from 'antd';
+import React, { Component } from "react";
+import "./Search.css";
+import { AutoComplete, Icon } from "antd";
 
-function onSelect(value) {
-  console.log('onSelect', value);
-}
+import { Input } from "antd";
 
-class Search extends React.Component {
-  state = {
-    dataSource: [],
-  }
+const Search = Input.Search;
 
-  handleSearch = (value) => {
-    this.setState({
-      dataSource: !value ? [] : [
-        value,
-        value + value,
-        value + value + value,
-      ],
-    });
-  }
-
+class Search extends Component {
   render() {
-    const { dataSource } = this.state;
     return (
-        <div>
-             <span>
-      <AutoComplete className="left"
-        dataSource={dataSource}
-        style={{ width: 200 }}
-        onSelect={onSelect}
-        onSearch={this.handleSearch}
-        placeholder="input here"
-      />
-     <Icon type="search" /></span>
+      <div>
+        <Search
+          placeholder="input search text"
+          onSearch={value => console.log(value)}
+          enterButton
+        />
       </div>
     );
   }
 }
+
 export default Search;

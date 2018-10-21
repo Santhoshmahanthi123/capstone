@@ -1,17 +1,20 @@
 import React, { Component } from "react";
-import {Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./Home.css";
 import { Layout, Menu, Breadcrumb, Icon } from "antd";
 import "antd/dist/antd.css";
-import Search from "./Search";
+// import Search from "./Search";
 import Signup from "./Signup";
 import ImageSlider from "./ImageSlider";
 import Location from "./Location";
 import Cards from "./Cards";
 import Routes from "../Routes";
+import PostAd from '../Containers/PostAd';
 import Login from "./Login";
+import { Input } from "antd";
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
+const Search = Input.Search;
 
 class Home extends Component {
   state = {
@@ -34,8 +37,10 @@ class Home extends Component {
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1">
-              <Icon type="pie-chart" />
-              <span><Link to="/">Home</Link></span>
+              <Icon type="home" />
+              <span>
+                <Link to="/">Home</Link>
+              </span>
             </Menu.Item>
             {/* <Menu.Item key="2">
               <Icon type="desktop" />
@@ -45,12 +50,14 @@ class Home extends Component {
               key="sub1"
               title={
                 <span>
-                  <Icon type="user" />
+                  <Icon type="pie-chart" />
                   <span>Food</span>
                 </span>
               }
             >
-              <Menu.Item key="2"><Link to="/Food/Snacks">Snacks</Link></Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/Food/Snacks">Snacks</Link>
+              </Menu.Item>
               <Menu.Item key="3">Beverages</Menu.Item>
               <Menu.Item key="4">HomeMade</Menu.Item>
             </SubMenu>
@@ -84,30 +91,39 @@ class Home extends Component {
             </Menu.Item>
             <Menu.Item key="11">
               <Icon type="home" />
-              <span><Link to="/Login">Login</Link></span>
+              <span>
+                <Link to="/Login">Login</Link>
+              </span>
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
           {/* <Header style={{ background: '#fff', padding: 0 }} /> */}
           {/* <Location /> */}
-          <Search style={{ background: "#fff", padding: 0, marginLeft: 200 }} />
-
+          {/* <Search style={{ background: "#fff", padding: 0, marginLeft: 200 }} /> */}
+          <span >
+            <Search style={{ padding: 24, width: 250,float:'left'}}
+              placeholder="input search text"
+              onSearch={value => console.log(value)}
+              enterButton
+            />
+          </span>
           <Content style={{ margin: "0 16px" }}>
-            <Breadcrumb style={{ margin: "16px 0" }} />
+            {/* <Breadcrumb style={{ margin: "16px 0" }} /> */}
             <div style={{ padding: 24, background: "#fff" }}>
-              
-              <Routes/>
-              <Signup />
+              {/* <ImageSlider/> */}
+              <Routes />
+              {/* <Signup /> */}
+              {/* <PostAd /> */}
               {/* <Login /> */}
             </div>
             {/* <div style={{ padding: 24, background: "#fff" }}>
                
             </div> */}
           </Content>
-          <Footer style={{ textAlign: "center" }}>
+          {/* <Footer style={{ textAlign: "center" }}>
             Ant Design ©2018 Created by Ant UED
-          </Footer>
+          </Footer> */}
         </Layout>
       </Layout>
     );
