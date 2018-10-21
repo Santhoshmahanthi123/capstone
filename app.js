@@ -1,67 +1,55 @@
-require('dotenv').config();
-const cors = require('cors');
 const express = require('express');
-
-const port = process.env.PORT || 3000;
-
-const app = express();
-const morgan = require('morgan');
-app.use(cors());
-
-const userRoutes = require('./routes/user');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const development = process.env.NODE_ENV;
-console.log(process.env.DBUSER, process.env.DBPASSWORD);
-console.log( process.env.JWTKEY);
-const DATABASEURL=process.env.DATABASEURL;
-console.log(process.env.DATABASEURL);
-mongoose.connect(DATABASEURL,{useNewUrlParser: true})
+const app = express();
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
-    // mongoose.connect('mongodb://'+ process.env.DBUSER +':'+ process.env.DBPASSWORD+'@ds135993.mlab.com:35993/capstone',{useNewUrlParser:true });
+const foods = require('./models/food');
 
+app.get('/',(req, res, next) => {   
+    res.send('Welcome to InNeed 24/7 ');
+});
 
-//removing deprecation warnings 
-mongoose.Promise = global.Promise;
-//gives logs for nodejs like requests
+//route
+const foodRoutes = require('./routes/foods');
+
 app.use(morgan('dev'));
-//allows static files to be accessed publicly available
-app.use('/uploads',express.static('uploads'));
-//body parser parses the url encoded and json data in proper format
-
-app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.urlencoded({extended : true }));
 app.use(bodyParser.json());
-//giving CORS(Cross Origin Resource Sharing) permissions to anyone who requests to these end points
-app.use((req,res,next)=>{
-    //* will give access to any origin
- res.header('Access-Control-Allow-Origin','*');
- res.header('Access-Control-Allow-Origin','Origin,X-Requested-With,Content-Type,Accept');
-//  if(req.method === 'OPTIONS'){
-//      res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
-//      return res.status(200).json({});
-//  }
- next();
-})
 
 
+//CORS
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin','*');
+    res.header('Access-Control-Allow-Header',
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 
-app.use('/user',userRoutes);
+if(req.method === 'OPTIONS'){
+    res.header('Access-Control-Allow-Methods','PUT,POST,PATCH,DELETE,GET');
+    return res.status(200).json({});
+}
+    next();
+});
 
-app.use((req,res,next)=>{
-    const error = new Error('Not found!');
+//routes 
+app.use('/foods',foodRoutes);
+
+//error handling 
+app.use((req, res, next) => {
+    const error = new Error('Not Found');
     error.status = 404;
     next(error);
-}); 
-app.use((error,req,res,next)=>{
- res.status(error.status || 500);
- res.json({
-     error:{
-         message : error.message
-     }
- });
 });
-app.listen(port,()=>{
-    console.log(`listening to server on ${port} port`);
-    
-})
+
+//error handling in application
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({
+        error : {
+        message : error.message
+         }
+    });
+});
+
 module.exports = app;
+
