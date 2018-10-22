@@ -115,7 +115,7 @@ exports.user_delete = (req,res,next) => {
 }
 
 exports.users_get = (req,res,next) => {
-    User.find()
+    User.findById(req.params.userId)
     .select('email name address mobile pincode')
     .exec()
     .then(result => {
