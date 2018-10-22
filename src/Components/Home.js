@@ -6,7 +6,7 @@ import "antd/dist/antd.css";
 // import Search from "./Search";
 import Signup from "./Signup";
 import ImageSlider from "./ImageSlider";
-import Location from "./Location";
+import GoogleApiWrapper from "./Location";
 import Cards from "./Cards";
 import Routes from "../Routes";
 import PostAd from '../Containers/PostAd';
@@ -39,7 +39,7 @@ class Home extends Component {
             <Menu.Item key="1">
               <Icon type="home" />
               <span>
-                <Link to="/">Home</Link>
+                <Link to="/Home">Home</Link>
               </span>
             </Menu.Item>
             {/* <Menu.Item key="2">
@@ -95,6 +95,18 @@ class Home extends Component {
                 <Link to="/Login">Login</Link>
               </span>
             </Menu.Item>
+            <Menu.Item key="12">
+              <Icon type="home" />
+              <span>
+                <Link to="/PostAd">Ad</Link>
+              </span>
+            </Menu.Item>
+            <Menu.Item key="13">
+              <Icon type="" />
+              <span>
+                <Link to="/Product">Product</Link>
+              </span>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
@@ -108,6 +120,7 @@ class Home extends Component {
               enterButton
             />
           </span>
+          {/* <span><GoogleApiWrapper/></span> */}
           <Content style={{ margin: "0 16px" }}>
             {/* <Breadcrumb style={{ margin: "16px 0" }} /> */}
             <div style={{ padding: 24, background: "#fff" }}>

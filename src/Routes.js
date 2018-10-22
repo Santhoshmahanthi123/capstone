@@ -8,6 +8,7 @@ import Product from './Components/Product';
 import ImageSlider from './Components/ImageSlider'
 import Snacks from './Components/Snacks'
 import Cards from './Components/Cards'
+import Homebasic from './Components/HomeBasic';
 
 class Routes extends Component{
     render(){
@@ -15,13 +16,15 @@ class Routes extends Component{
             <Switch>
                 {/* <ImageSlider />
                 <Cards /> */}
-                <Route exact path="/" component= {Home}/>
-                <Route path="/Login" component = {Login}/>
+                <Route path="/Home" component= {Homebasic}/>
+                <Route exact path="/Login" component = {Login}/>
                 <Route path="/Signup" component = {Signup}/>
-                <Route path="/PostAd" component = {PostAd}/>
-                <Route path="/Food/Snacks" component = {Snacks}/>
+                <Route exact path="/PostAd" component = {PostAd}/>
+                <Route exact path="/Food/Snacks" component = {Snacks}/>
+                <Route path="/Home" component = {Cards}/>
+                <Route path="/Product" component = {Product}/>
                 {/* How to build the below product route */}
-                <Route path="/category/subcategory/productid" component = {Product}/>                
+                {/* <Route path="/category/subcategory/productid" component = {Product}/>                 */}
                 {/* <Route/> */}
             </Switch>
         )
