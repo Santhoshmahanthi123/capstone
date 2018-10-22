@@ -22,7 +22,8 @@ class Routes extends Component{
                 <Route exact path="/PostAd" component = {PostAd}/>
                 <Route exact path="/Food/Snacks" component = {Snacks}/>
                 <Route path="/Home" component = {Cards}/>
-                <Route path="/Product" component = {Product}/>
+                {/* <Route path="/Product" component = {Product}/> */}
+                <Route path="/Product/:id" component = {Product}/>
                 {/* How to build the below product route */}
                 {/* <Route path="/category/subcategory/productid" component = {Product}/>                 */}
                 {/* <Route/> */}

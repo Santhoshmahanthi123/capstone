@@ -120,7 +120,7 @@ class Home extends Component {
               enterButton
             />
           </span>
-          {/* <span><GoogleApiWrapper/></span> */}
+          <span><GoogleApiWrapper/></span>
           <Content style={{ margin: "0 16px" }}>
             {/* <Breadcrumb style={{ margin: "16px 0" }} /> */}
             <div style={{ padding: 24, background: "#fff" }}>

@@ -1,9 +1,6 @@
 import React from "react";
 import { GoogleApiWrapper, Map } from "google-maps-react";
-
-
-
-
+import Geocode from "react-geocode";
 
 
 export class MapContainer extends React.Component {
@@ -12,15 +9,24 @@ export class MapContainer extends React.Component {
   componentDidMount(props) {
     navigator.geolocation.getCurrentPosition(
       position => {
+        console.log("##############", position);
         const { latitude, longitude } = position.coords;
-
+        
         this.setState({
           userLocation: { lat: latitude, lng: longitude },
           loading: false
         });
+
+      
       },
       () => {
         this.setState({ loading: false });
+      }
+    );
+    Geocode.fromLatLng("48.8583701", "2.2922926").then(
+      response => {
+        const address = response.results[0].formatted_address;
+        console.log(address,"********************");
       }
     );
   }
@@ -33,7 +39,7 @@ export class MapContainer extends React.Component {
       return null;
     }
 
-    return <Map google={google} initialCenter={userLocation} zoom={10} />;
+    return <h3>Hiiiii</h3>;
   }
 }
 
