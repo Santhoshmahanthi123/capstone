@@ -45,7 +45,7 @@ app.get('/twilio',(req,res)=>{
   client.messages
   .create({
        from :'+15129576906',
-       body : 'Hey vadlakonda twilio is working!',
+       body : 'Hey someone has ordered your product in InNeed.!',
        to: '+918332895582'
      })
      .then(message => res.json({'message':'Twilio is working successfully!'}))
