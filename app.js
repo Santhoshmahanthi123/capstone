@@ -1,9 +1,7 @@
 require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
-
 const port = process.env.PORT || 3000;
-
 const app = express();
 const morgan = require('morgan');
 app.use(cors());
@@ -15,7 +13,11 @@ const development = process.env.NODE_ENV;
 console.log(process.env.DBUSER, process.env.DBPASSWORD);
 console.log( process.env.JWTKEY);
 const DATABASEURL=process.env.DATABASEURL;
+const SID = process.env.SID;
+const TOKEN = process.env.TOKEN;
+const client = require('twilio')(SID,TOKEN);
 console.log(process.env.DATABASEURL);
+console.log(process.env.SID,process.env.TOKEN);
 mongoose.connect(DATABASEURL,{useNewUrlParser: true})
 //removing deprecation warnings 
 mongoose.Promise = global.Promise;
@@ -39,6 +41,17 @@ app.use((req,res,next)=>{
  next();
 })
 
+app.get('/twilio',(req,res)=>{
+  client.messages
+  .create({
+       from :'+15129576906',
+       body : 'Hey vadlakonda twilio is working!',
+       to: '+918332895582'
+     })
+     .then(message => res.json({'message':'Twilio is working successfully!'}))
+     .catch((err) => {res.json(err)})
+     .done();
+});
 
 
 app.use('/user',userRoutes);
