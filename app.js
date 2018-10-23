@@ -2,16 +2,29 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 const morgan = require('morgan');
 
 const foods = require('./models/food');
 
-app.get('/',(req, res, next) => {   
+app.get('/',(req, res, next) => {    
     res.send('Welcome to InNeed 24/7 ');
 });
 
+mongoose.connect('mongodb://Sparjan:Sparjan123@ds135993.mlab.com:35993/capstone',{
+    useNewUrlParser : true
+}
+);
+
+mongoose.Promise = global.Promise;
+
 //route
 const foodRoutes = require('./routes/foods');
+ 
+//front-end for require from helpers->hbs.js
+// const select = require('./helpers/hbs');
+
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended : true }));
