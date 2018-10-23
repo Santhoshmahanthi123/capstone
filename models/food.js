@@ -27,12 +27,7 @@ const foodSchema = new mongoose.Schema({
         required : false
         
     },
-    // user: {
-    //     id:{
-    //         type: mongoose.Schema.Types.ObjectId, 
-    //         ref: 'User',
-    //         required: true
-    //     }
+
         
     
     date : {

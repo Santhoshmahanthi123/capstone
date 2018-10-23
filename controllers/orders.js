@@ -1,11 +1,11 @@
 const Order = require('../models/order');
-const Product = require('../models/product');
+const Food = require('../models/food');
 const mongoose = require('mongoose');
 
  exports.orders_get_all = (req,res,next)=>{
     Order.find()
-    .select('product quantity _id')
-    .populate('product','name')
+    .select('food quantity _id')
+    .populate('food','name')
     .exec()
     .then(docs => {
         res.status(200).json({
@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
             orders : docs.map(doc => {
                 return {
                       _id: doc._id,
-                      product : doc.product,
+                      food : doc.food,
                       quantity : doc.quantity,
                       request : {
                           type :'GET',
@@ -34,17 +34,17 @@ const mongoose = require('mongoose');
   }
 
   exports.orders_create_order = (req,res,next)=>{
-    Product.findById(req.body.productId)
-    .then(product => {
-        if(!product){
+    Food.findById(req.body.foodId)
+    .then(food => {
+        if(!food){
             return res.status(404).json({
-                message : 'Product not found!'
+                message : 'Food not found!'
             });
         }
         const order = new Order({
             _id: mongoose.Types.ObjectId(),
             quantity :req.body.quantity,
-            product : req.body.productId
+            food : req.body.foodId
         });
        return order.save() 
         
@@ -55,7 +55,7 @@ const mongoose = require('mongoose');
             message : 'Order stored!',
             createdOrder :{
                 _id:result._id,
-                product : result.product,
+                food : result.food,
                 quantity : result.quantity
             },
             request : {
@@ -73,8 +73,8 @@ const mongoose = require('mongoose');
 }
 exports.orders_get_order = (req,res,next)=>{
     Order.findById(req.params.orderId)
-    .populate('product')
-    .select('quantity _id product')
+    .populate('food')
+    .select('quantity _id food')
     .exec()
     .then(order =>{
         if(!order){

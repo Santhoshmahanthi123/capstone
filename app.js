@@ -7,6 +7,7 @@ const morgan = require('morgan');
 app.use(cors());
 const foodRoutes = require('./routes/foods');
 const userRoutes = require('./routes/user');
+const orderRoutes = require('./routes/orders');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const development = process.env.NODE_ENV;
@@ -56,6 +57,8 @@ app.get('/twilio',(req,res)=>{
 
 app.use('/user',userRoutes);
 app.use('/foods',foodRoutes);
+app.use('/orders',orderRoutes)
+app.use('/public/uploads',express.static('uploads'));
 
 
 app.use((req,res,next)=>{
