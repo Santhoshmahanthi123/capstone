@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 
  exports.orders_get_all = (req,res,next)=>{
     Order.find()
-    .select('food quantity _id')
-    .populate('food','name')
+    .select('food name quantity _id')
+    .populate('food','title')
     .exec()
     .then(docs => {
         res.status(200).json({
@@ -55,7 +55,7 @@ const mongoose = require('mongoose');
             message : 'Order stored!',
             createdOrder :{
                 _id:result._id,
-                food : result.food,
+                title: result.title,
                 quantity : result.quantity
             },
             request : {
