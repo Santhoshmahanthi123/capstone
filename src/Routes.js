@@ -9,6 +9,8 @@ import ImageSlider from './Components/ImageSlider'
 import Snacks from './Components/Snacks'
 import Cards from './Components/Cards'
 import Homebasic from './Components/HomeBasic';
+import ReportUs from './Components/ReportUs'
+import PageNotFound from './Components/PageNotFound'
 
 class Routes extends Component{
     render(){
@@ -22,11 +24,12 @@ class Routes extends Component{
                 <Route exact path="/PostAd" component = {PostAd}/>
                 <Route exact path="/Food/Snacks" component = {Snacks}/>
                 <Route path="/Home" component = {Cards}/>
-                {/* <Route path="/Product" component = {Product}/> */}
+                <Route path="/ReportUs" component = {ReportUs}/>
                 <Route path="/Product/:id" component = {Product}/>
                 {/* How to build the below product route */}
                 {/* <Route path="/category/subcategory/productid" component = {Product}/>                 */}
                 {/* <Route/> */}
+                <Route component={PageNotFound} />
             </Switch>
         )
     }

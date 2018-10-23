@@ -7,6 +7,7 @@ export class MapContainer extends React.Component {
   state = { userLocation: { lat: 32, lng: 32 }, loading: true };
 
   componentDidMount(props) {
+   // Geocode.setApiKey("AIzaSyB7u8Qzi6Ca4e5DwMN9uIRfJEnHDOKNEt8");
     navigator.geolocation.getCurrentPosition(
       position => {
         console.log("##############", position);
@@ -23,7 +24,7 @@ export class MapContainer extends React.Component {
         this.setState({ loading: false });
       }
     );
-    Geocode.fromLatLng("48.8583701", "2.2922926").then(
+    Geocode.fromLatLng(this.state.userLocation.lat, this.state.userLocation.lng).then(
       response => {
         const address = response.results[0].formatted_address;
         console.log(address,"********************");
@@ -47,32 +48,3 @@ export default GoogleApiWrapper({
   apiKey: "AIzaSyB7u8Qzi6Ca4e5DwMN9uIRfJEnHDOKNEt8"
 })(MapContainer);
 
-
-
-
-
-
-
-
-// import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-// import React, { Component } from "react";
-
-// export class Location extends Component {
-//   render() {
-//     return (
-//       <Map google={this.props.google} zoom={14}>
- 
-//         <Marker onClick={this.onMarkerClick}
-//                 name={'Current location'} />
- 
-//         <InfoWindow onClose={this.onInfoWindowClose}>
-           
-//         </InfoWindow>
-//       </Map>
-//     );
-//   }
-// }
- 
-// export default GoogleApiWrapper({
-//   apiKey: ('AIzaSyB7u8Qzi6Ca4e5DwMN9uIRfJEnHDOKNEt8')
-// })(Location)

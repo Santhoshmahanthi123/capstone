@@ -70,8 +70,8 @@ class Home extends Component {
                 </span>
               }
             >
-              <Menu.Item key="5">Emergency</Menu.Item>
-              <Menu.Item key="6">Vitamin &amp; Supplements</Menu.Item>
+              <Menu.Item key="5"><Link to="">Emergency</Link></Menu.Item>
+              <Menu.Item key="6"><Link to="">Vitamin &amp; Supplements</Link></Menu.Item>
             </SubMenu>
             {/* <SubMenu
               key="sub3"
@@ -80,14 +80,14 @@ class Home extends Component {
             <Menu.Item key="7">
               {" "}
               <Icon type="file" />
-              <span>Misc</span>
+              <span><Link to="">Misc</Link></span>
             </Menu.Item>
             {/* <Menu.Item key="8">Bill</Menu.Item>
               <Menu.Item key="9">Alex</Menu.Item> */}
             {/* </SubMenu> */}
             <Menu.Item key="10">
               <Icon type="file" />
-              <span>Report Us</span>
+              <span><Link to="/ReportUs">Report Us</Link></span>
             </Menu.Item>
             <Menu.Item key="11">
               <Icon type="home" />
@@ -99,12 +99,6 @@ class Home extends Component {
               <Icon type="home" />
               <span>
                 <Link to="/PostAd">Ad</Link>
-              </span>
-            </Menu.Item>
-            <Menu.Item key="13">
-              <Icon type="" />
-              <span>
-                <Link to="/Product">Product</Link>
               </span>
             </Menu.Item>
           </Menu>
