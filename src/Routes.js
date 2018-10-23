@@ -8,6 +8,7 @@ import Product from './Components/Product';
 import ImageSlider from './Components/ImageSlider'
 import Snacks from './Components/Snacks'
 import Cards from './Components/Cards'
+import Chat from './Components/chat'
 import Homebasic from './Components/HomeBasic';
 import ReportUs from './Components/ReportUs'
 import PageNotFound from './Components/PageNotFound'
@@ -25,6 +26,7 @@ class Routes extends Component{
                 <Route exact path="/PostAd" component = {PostAd}/>
                 <Route exact path="/Food/Snacks" component = {Snacks}/>
                 <Route path="/Home" component = {Cards}/>
+                <Route path="/chat" component = {Chat}/>
                 <Route path="/ReportUs" component = {ReportUs}/>
                 <Route path="/Product/:id" component = {Product}/>
                 <Route path="/CartItem" component = {CartItem}/>

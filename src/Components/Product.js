@@ -5,12 +5,20 @@ import {Button} from 'react-bootstrap'
 
 class Product extends Component {
   state={
-    buyClicked: false
+    buyClicked: false,
+    chatClicked: false
   }
   handleClick= () =>{
     //Redirect to Cart page
     this.setState({
       buyClicked: true
+    })
+
+  }
+
+  handleChatClick = ()=>{
+    this.setState({
+      chatClicked: true
     })
 
   }
@@ -22,6 +30,10 @@ class Product extends Component {
         key:"value"
       }}}/>
     }
+    else if(this.state.chatClicked){
+      return <Redirect to ={{pathname:"/chat",
+      }}/>
+    }
    
     //console.log(id);
     return (
@@ -32,6 +44,9 @@ class Product extends Component {
               <div key={index}>
                 <h1>{product.name}</h1>
                 <Button onClick={this.handleClick}>Buy</Button>
+                <Button onClick={this.handleChatClick}>Chat</Button>
+                <Button onClick={this.handleMessageClick}>Message</Button>
+
               </div>
             );
           }
