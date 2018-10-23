@@ -11,6 +11,7 @@ import Cards from './Components/Cards'
 import Homebasic from './Components/HomeBasic';
 import ReportUs from './Components/ReportUs'
 import PageNotFound from './Components/PageNotFound'
+import CartItem from './Components/CartItem';
 
 class Routes extends Component{
     render(){
@@ -26,6 +27,7 @@ class Routes extends Component{
                 <Route path="/Home" component = {Cards}/>
                 <Route path="/ReportUs" component = {ReportUs}/>
                 <Route path="/Product/:id" component = {Product}/>
+                <Route path="/CartItem" component = {CartItem}/>
                 {/* How to build the below product route */}
                 {/* <Route path="/category/subcategory/productid" component = {Product}/>                 */}
                 {/* <Route/> */}

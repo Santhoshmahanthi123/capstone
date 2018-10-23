@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import "antd/dist/antd.css";
 import "./ImageSlider.css";
 import Cards from './Cards'
-import ProductsList from "./ProductsList";
+// import ProductsList from "./ProductsList";
 
 export const fakeData = [
   {
