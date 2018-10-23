@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 const morgan = require('morgan');
 app.use(cors());
-
+const foodRoutes = require('./routes/foods');
 const userRoutes = require('./routes/user');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -55,6 +55,8 @@ app.get('/twilio',(req,res)=>{
 
 
 app.use('/user',userRoutes);
+app.use('/foods',foodRoutes);
+
 
 app.use((req,res,next)=>{
     const error = new Error('Not found!');

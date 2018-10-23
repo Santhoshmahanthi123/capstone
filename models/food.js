@@ -15,7 +15,9 @@ const foodSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
-   
+    // fooditem : {
+    //     type : String
+    // },
     description:{ 
         type : String,
         required : true
@@ -25,6 +27,13 @@ const foodSchema = new mongoose.Schema({
         required : false
         
     },
+    // user: {
+    //     id:{
+    //         type: mongoose.Schema.Types.ObjectId, 
+    //         ref: 'User',
+    //         required: true
+    //     }
+        
     
     date : {
         type : Date,

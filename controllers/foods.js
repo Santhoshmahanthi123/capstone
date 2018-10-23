@@ -19,7 +19,7 @@ exports.foods_get_all = (req, res, next) => {
                 
                 request : {
                     type : 'GET',
-                    url : 'https://capstone-inneed.herokuapp.com/foods' + doc._id
+                    url : 'http://localhost:3030/foods/' + doc._id
 
                      }
                 };
@@ -55,7 +55,7 @@ exports.foods_create_food = (req, res, next) => {
             createdFood : food,
             request : {
                 type : "GET",
-                url : "http://localhost:3000/foods" + result._id
+                url : "http://localhost:3030/foods/" + result._id
             }
         });
     
@@ -79,7 +79,7 @@ exports.foods_get_food = (req, res, next) => {
                 Food : doc,
                 request : {
                     type : 'GET',
-                    url : "https://capstone-inneed.herokuapp.com/foods" + doc._id
+                    url : "http://localhost:3030/foods/" + doc._id
                 }
              });
         } else {
@@ -96,27 +96,54 @@ exports.foods_get_food = (req, res, next) => {
             });
     });
 }
-exports.foods_delete_food = (req,res,next)=>{
+
+// exports.foods_update_food = (req, res, next) => {
+//     const id = req.params.foodId;
+//     const updateOps = {};
+//     for(const ops of req.body) {
+//         updateOps[ops.propName] = ops.value;
+//     }
+//     Food.update({_id : id},{$set : updateOps})
+//     .exec()
+//     .then(result => {
+//         console.log(result);
+//         res.status(200).json({
+//             message : "product updated",
+//             request : {
+//                 type : 'GET',
+//                 url : 'http:localhost:3030/foods/' + id
+//             }
+//         });
+//     })
+//     .catch(err => {
+//         res.status(500).json({
+//             error : err
+//         });
+//     });
+// }; 
+
+exports.foods_delete_food = (req, res, next) => {
     const id = req.params.foodId;
-   Food.remove({_id : id })
-   .exec()
-   .then(result => {
-    res.status(200).json({
-        message : 'Food item deleted!',
-        request : {
-            type : 'POST',
-            url : "https://capstone-inneed.herokuapp.com/foods",
-            body : {
-                name : 'String',
-                price : 'Number'
-            }
-        }
+    Food.remove({_id : id })
+    .exec()
+    .then(result => {
+     res.status(200).json({
+         message : 'Food item deleted!',
+         request : {
+             type : 'POST',
+             url : "https://capstone-inneed.herokuapp.com/foods",
+             body : {
+                 name : 'String',
+                 price : 'Number'
+             }
+         }
+     })
     })
-   })
-   .catch( err => {
-    console.log(err);
-    res.status(500).json({
-        error : err
+    .catch( err => {
+     console.log(err);
+     res.status(500).json({
+         error : err
+     });
     });
-   });
-  }
+   
+}
