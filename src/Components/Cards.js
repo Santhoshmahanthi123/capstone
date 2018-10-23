@@ -2,18 +2,24 @@ import { Card, Col, Row } from "antd";
 import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 import "antd/dist/antd.css";
-import { fakeData } from './HomeBasic';
+//import { fakeData } from './HomeBasic';
 
 class Cards extends Component {
+  constructor(props){
+    super(props);
+    console.log("From Cards constructor", props)
+  }
   handleClick = () =>{
     console.log("Image is clicked!")
     //logic to redirect to the particular product page
   }
   render() {
+    const { data } = this.props.data;
+    console.log(data, "%%%%%%%%%%%%%%%%%%");
     return (
       <div style={{ background: "#ECECEC", padding: "30px" }}>
       <Row gutter={16}>
-        {fakeData.map((product, index) => {
+        {data.map((product, index) => {
          return (
             <Col span={8} key={index}>
               <Card title={product.name} bordered={false}>
@@ -32,7 +38,7 @@ class Cards extends Component {
                       </td>
                     </tr>
                     <tr>
-                      <td>Price: 10</td>
+                      <td>Price: {product.price}</td>
                     </tr>
                   </tbody>
                 </table>

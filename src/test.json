@@ -1,0 +1,30 @@
+{"foods": [
+       {
+           "title": "sandwich ",
+           "price": 4.99,
+           "_id": "5bceedd1fcc8c4408a00462c",
+           "request": {
+               "type": "GET",
+               "url": "http://localhost:3030/foods/5bceedd1fcc8c4408a00462c"
+           }
+       },
+       {
+           "title": "sandwich ",
+           "price": 4.99,
+           "_id": "5bceeefb61e74240e529b894",
+           "request": {
+               "type": "GET",
+               "url": "http://localhost:3030/foods/5bceeefb61e74240e529b894"
+           }
+       },
+       {
+           "title": "sandwich ",
+           "price": 4.99,
+           "_id": "5bcef0be5e720b4174f8e014",
+           "request": {
+               "type": "GET",
+               "url": "http://localhost:3030/foods/5bcef0be5e720b4174f8e014"
+           }
+       }
+   ]
+}

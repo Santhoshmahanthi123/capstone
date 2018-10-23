@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import { fakeData } from "./HomeBasic";
+// import { fakeData } from "./HomeBasic";
 import {Redirect} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
 
 class Product extends Component {
-  state={
-    buyClicked: false,
-    chatClicked: false
+  constructor(props){
+    super(props);
+    this.state={
+      buyClicked: false,
+      chatClicked: false
+    }
   }
+  
   handleClick= () =>{
     //Redirect to Cart page
     this.setState({
@@ -24,6 +28,7 @@ class Product extends Component {
   }
   render() {
     const { id } = this.props.match.params;
+    const { data } = this.props.data;
     if(this.state.buyClicked){
       return <Redirect to ={{pathname:"/CartItem",
       state:{
@@ -38,7 +43,7 @@ class Product extends Component {
     //console.log(id);
     return (
       <div>
-        {fakeData.map((product, index) => {
+        {data.map((product, index) => {
           if (product.id == id) {
             return (
               <div key={index}>

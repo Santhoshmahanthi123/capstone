@@ -14,7 +14,7 @@ export default function loginReducer(
     isLoginPending: false,
     isLoginSuccess: false,
     loginError: null,
-    visibleModal: true
+  //  visibleModal: true
   },
   action
 ) {
@@ -23,25 +23,25 @@ export default function loginReducer(
       return {
         ...state,
         isLoginPending: action.isLoginPending,
-        visibleModal: true
+       // visibleModal: true
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
         isLoginSuccess: action.isLoginSuccess,
         user: action.payload,
-        visibleModal: false
+     //   visibleModal: false
       };
     case LOGIN_ERROR:
       return {
         ...state,
         loginError: action.loginError,
-        visibleModal: true
+       // visibleModal: true
       };
     case LOGINBUTTON_CLICK:
       return {
         ...state,
-        visibleModal: true
+        
       };
     default:
       return state;
@@ -60,7 +60,7 @@ export function login(username, password) {
     // Axios.get('https://e-commerce-application.herokuapp.com/login',{username, password} )
     //login should be a post request and not a get request
     Axios({
-      // url: 'https://e-commerce-application.herokuapp.com/users',
+      url: 'https://capstone-inneed.herokuapp.com/user/login',
       method: "get",
       //headers: {'Content-Type': 'application/json'},
       data: {
@@ -80,49 +80,3 @@ export function login(username, password) {
   };
 }
 
-// function sendLoginRequest(username, password){
-//     //var result={}
-//     //console.log("##################", file)
-//     // old method of fetching data from json file
-//     // fetch(file)
-//     // .then((response) => {
-//     //     console.log(response)
-//     //     return response.json()
-
-//     // })
-//     // .then((findresponse) =>{
-//     //     result= findresponse
-//     //     console.log("loginrequest fxn ", result)
-//     //  })
-//     //  .catch((err) =>{
-//     //         console.log(err)
-//     //       });
-
-//     return new Promise ((resolve, reject) => {
-//         var flag= false
-//         console.log(file.contacts)
-//         file.contacts.forEach((user) => {
-//             console.log(user.email+"*********************")
-//             console.log(username+"&&&&&&&&&&&&&&&&&&")
-//             if(username ===user.email){
-//                 //try to use indexOf
-//                 if(password === user.password){
-//                     console.log(user)
-//                     return resolve(user)
-//                 }
-//                 else{
-//                     return reject(new Error("Invalid password"))
-//                 }
-//             }
-//             else{// check with flags
-//                flag= true
-//             }
-
-//         })
-//         if(flag){
-//             console.log("In Reducer value is "+flag)
-//             return reject(new Error("Invalid username"))
-//         }
-
-//     })
-// }

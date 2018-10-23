@@ -56,7 +56,7 @@ class Home extends Component {
               }
             >
               <Menu.Item key="2">
-                <Link to="/Food/Snacks">Snacks</Link>
+                <Link to="/foods">Snacks</Link>
               </Menu.Item>
               <Menu.Item key="3">Beverages</Menu.Item>
               <Menu.Item key="4">HomeMade</Menu.Item>
@@ -99,6 +99,12 @@ class Home extends Component {
               <Icon type="home" />
               <span>
                 <Link to="/PostAd">Ad</Link>
+              </span>
+            </Menu.Item>
+            <Menu.Item key="13">
+              <Icon type="home" />
+              <span>
+                <Link to="/Signup">Signup</Link>
               </span>
             </Menu.Item>
           </Menu>

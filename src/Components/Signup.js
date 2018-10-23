@@ -12,6 +12,10 @@ import {
   Button,
   AutoComplete
 } from "antd";
+import { connect } from "react-redux";
+
+import { withRouter, Redirect } from "react-router-dom";
+import { signupFn } from "../Redux/Reducers/SignupReducer";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -28,6 +32,8 @@ class RegistrationForm extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+        let { name,email, password, mobile, address, pincode  } = this.state;
+        this.props.signupFn(name,email, password, mobile, address, pincode);
       }
     });
   };
@@ -54,19 +60,14 @@ class RegistrationForm extends Component {
     callback();
   };
 
-  handleWebsiteChange = value => {
-    let autoCompleteResult;
-    if (!value) {
-      autoCompleteResult = [];
-    } else {
-      autoCompleteResult = [".com", ".org", ".net"].map(
-        domain => `${value}${domain}`
-      );
-    }
-    this.setState({ autoCompleteResult });
-  };
-
   render() {
+    if(isSignupSuccess){
+      return(
+         <Redirect to={{
+                       pathname: '/Profile',
+                   }} push  />
+      )
+  }
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult } = this.state;
 
@@ -104,10 +105,23 @@ class RegistrationForm extends Component {
     const websiteOptions = autoCompleteResult.map(website => (
       <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
     ));
-
+    let { username, password } = this.state;
+    let { isSignupPending, isSignupSuccess, SignupError } = this.props;
+    console.log("Signup Success is :", isSignupSuccess);
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormItem label="Sign Up Form" />
+        <FormItem {...formItemLayout} label={<span>Name&nbsp;</span>}>
+          {getFieldDecorator("Name", {
+            rules: [
+              {
+                required: true,
+                message: "Please input your Name!",
+                whitespace: true
+              }
+            ]
+          })(<Input onChange={e => this.setState({ name: e.target.value })} />)}
+        </FormItem>
         <FormItem {...formItemLayout} label="E-mail">
           {getFieldDecorator("email", {
             rules: [
@@ -120,7 +134,9 @@ class RegistrationForm extends Component {
                 message: "Please input your E-mail!"
               }
             ]
-          })(<Input />)}
+          })(
+            <Input onChange={e => this.setState({ email: e.target.value })} />
+          )}
         </FormItem>
         <FormItem {...formItemLayout} label="Password">
           {getFieldDecorator("password", {
@@ -146,25 +162,27 @@ class RegistrationForm extends Component {
                 validator: this.compareToFirstPassword
               }
             ]
-          })(<Input type="password" onBlur={this.handleConfirmBlur} />)}
+          })(
+            <Input
+              type="password"
+              onBlur={this.handleConfirmBlur}
+              onChange={e => this.setState({ password: e.target.value })}
+            />
+          )}
         </FormItem>
-        <FormItem {...formItemLayout} label={<span>Username&nbsp;</span>}>
-          {getFieldDecorator("Username", {
-            rules: [
-              {
-                required: true,
-                message: "Please input your username!",
-                whitespace: true
-              }
-            ]
-          })(<Input />)}
-        </FormItem>
+
         <FormItem {...formItemLayout} label="Phone Number">
           {getFieldDecorator("phone", {
             rules: [
               { required: true, message: "Please input your phone number!" }
             ]
-          })(<Input addonBefore={prefixSelector} style={{ width: "100%" }} />)}
+          })(
+            <Input
+              addonBefore={prefixSelector}
+              style={{ width: "100%" }}
+              onChange={e => this.setState({ mobile: e.target.value })}
+            />
+          )}
         </FormItem>
         <FormItem {...formItemLayout} label="Address">
           {getFieldDecorator("address", {
@@ -173,11 +191,30 @@ class RegistrationForm extends Component {
                 required: true,
                 message: "Please input your address!"
               }
+
               //{
               //   validator: this.validateToNextPassword,
               // }
             ]
-          })(<Input type="address" />)}
+          })(
+            <Input
+              type="address"
+              onChange={e => this.setState({ address: e.target.value })}
+            />
+          )}
+        </FormItem>
+        <FormItem {...formItemLayout} label={<span>Pincode&nbsp;</span>}>
+          {getFieldDecorator("Pincode", {
+            rules: [
+              {
+                required: true,
+                message: "Please input your Pincode!",
+                whitespace: true
+              }
+            ]
+          })(
+            <Input onChange={e => this.setState({ pincode: e.target.value })} />
+          )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>
           {getFieldDecorator("agreement", {
@@ -193,11 +230,35 @@ class RegistrationForm extends Component {
             Register
           </Button>
         </FormItem>
+        {isSignupPending && <div>Please wait..</div>
+        // jquery.getElementById()
+        }
+        {isSignupSuccess && <div>Welcome</div>}
+        {SignupError && <div>{SignupError.message}</div>}
       </Form>
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    isSignupPending: state.signupFn.isSignupPending,
+    isSignupSuccess: state.signupFn.isSignupSuccess,
+    SignupError: state.signupFn.SignupError
+  };
+};
+
+const dispatchToProps = dispatch => {
+  return {
+    signupFn: (name,email, password, mobile, address, pincode) => dispatch(signupFn(name,email, password, mobile, address, pincode))
+    //cancelAction: () => dispatch(cancelAction())
+  };
+};
 
 const WrappedRegistrationForm = Form.create()(RegistrationForm);
 
-export default WrappedRegistrationForm;
+export default withRouter(
+  connect(
+    mapStateToProps,
+    dispatchToProps
+  )(WrappedRegistrationForm)
+);
