@@ -106,6 +106,7 @@ exports.foods_get_food = (req, res, next) => {
 //     Food.update({_id : id},{$set : updateOps})
 //     .exec()
 //     .then(result => {
+//         console.log(result);
 //         res.status(200).json({
 //             message : "product updated",
 //             request : {
@@ -122,7 +123,27 @@ exports.foods_get_food = (req, res, next) => {
 // }; 
 
 exports.foods_delete_food = (req, res, next) => {
-    res.status(200).json({
-        message : " this is for deleting single product"
+    const id = req.params.foodId;
+    Food.remove({_id : id })
+    .exec()
+    .then(result => {
+     res.status(200).json({
+         message : 'Food item deleted!',
+         request : {
+             type : 'POST',
+             url : "https://capstone-inneed.herokuapp.com/foods",
+             body : {
+                 name : 'String',
+                 price : 'Number'
+             }
+         }
+     })
+    })
+    .catch( err => {
+     console.log(err);
+     res.status(500).json({
+         error : err
+     });
     });
+   
 }
