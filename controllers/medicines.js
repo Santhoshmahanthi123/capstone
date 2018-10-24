@@ -17,11 +17,11 @@ exports.medicines_get_all = (req, res, next) => {
                     quantity : doc.quantity,
                     description : doc.description, 
                 
-                request : {
-                    type : 'GET',
-                    url : 'https://capstone-inneed.herokuapp.com/medicines/' + doc._id
+                // request : {
+                //     type : 'GET',
+                //     url : 'https://capstone-inneed.herokuapp.com/medicines/' + doc._id
 
-                     }
+                //      }
                 };
             })
         };
@@ -54,10 +54,10 @@ exports.medicines_create_medicine = (req, res, next) => {
         res.status(200).json({
             message : "created medicine",
             createdMedicine : medicine,
-            request : {
-                type : "GET",
-                url : "https://capstone-inneed.herokuapp.com/medicines/" + result._id
-            }
+            // request : {
+            //     type : "GET",
+            //     url : "https://capstone-inneed.herokuapp.com/medicines/" + result._id
+            // }
         });
     
     })
@@ -78,10 +78,10 @@ exports.medicines_get_medicine = (req, res, next) => {
         if(doc){
             res.status(200).json({
                 Medicine : doc,
-                request : {
-                    type : 'GET',
-                    url : "https://capstone-inneed.herokuapp.com/medicines/" + doc._id
-                }
+                // request : {
+                //     type : 'GET',
+                //     url : "https://capstone-inneed.herokuapp.com/medicines/" + doc._id
+                // }
              });
         } else {
             // url error
@@ -131,14 +131,14 @@ exports.medicines_delete_medicine = (req, res, next) => {
     .then(result => {
      res.status(200).json({
          message : 'Medicine item deleted!',
-         request : {
-             type : 'POST',
-             url : "https://capstone-inneed.herokuapp.com/medicines",
-             body : {
-                 title : 'String',
-                 price : 'Number'
-             }
-         }
+        //  request : {
+        //      type : 'POST',
+        //      url : "https://capstone-inneed.herokuapp.com/medicines",
+        //      body : {
+        //          title : 'String',
+        //          price : 'Number'
+        //      }
+        //  }
      })
     })
     .catch( err => {

@@ -17,11 +17,11 @@ exports.foods_get_all = (req, res, next) => {
                     quantity : doc.quantity,
                     description : doc.description, 
                 
-                request : {
-                    type : 'GET',
-                    url : 'https://capstone-inneed.herokuapp.com/foods' + doc._id
+                // request : {
+                //     type : 'GET',
+                //     url : 'https://capstone-inneed.herokuapp.com/foods' + doc._id
 
-                     }
+                //      }
                 };
             })
         };
@@ -53,10 +53,10 @@ exports.foods_create_food = (req, res, next) => {
         res.status(200).json({
             message : "created food ",
             createdFood : food,
-            request : {
-                type : "GET",
-                url : "https://capstone-inneed.herokuapp.com/foods" + result._id
-            }
+            // request : {
+            //     type : "GET",
+            //     url : "https://capstone-inneed.herokuapp.com/foods" + result._id
+            // }
         });
     
     })
@@ -77,10 +77,10 @@ exports.foods_get_food = (req, res, next) => {
         if(doc){
             res.status(200).json({
                 Food : doc,
-                request : {
-                    type : 'GET',
-                    url : "https://capstone-inneed.herokuapp.com/foods" + doc._id
-                }
+                // request : {
+                //     type : 'GET',
+                //     url : "https://capstone-inneed.herokuapp.com/foods" + doc._id
+                // }
              });
         } else {
             // url error
@@ -130,14 +130,14 @@ exports.foods_delete_food = (req, res, next) => {
     .then(result => {
      res.status(200).json({
          message : 'Food item deleted!',
-         request : {
-             type : 'POST',
-             url : "https://capstone-inneed.herokuapp.com/foods",
-             body : {
-                 title : 'String',
-                 price : 'Number'
-             }
-         }
+        //  request : {
+        //      type : 'POST',
+        //      url : "https://capstone-inneed.herokuapp.com/foods",
+        //      body : {
+        //          title : 'String',
+        //          price : 'Number'
+        //      }
+        //  }
      })
     })
     .catch( err => {
