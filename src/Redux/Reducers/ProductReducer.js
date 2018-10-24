@@ -45,12 +45,12 @@ export function displayProduct() {
     dispatch(setProductPending(true));
     dispatch(setProductError(null));
     Axios
-      .get("https://capstone-inneed.herokuapp.com/foods")
+      .get("https://capstone-inneed.herokuapp.com/medicines")
       .then((response) => {
         console.log(response,"$$$$$$$$@@@@");
-        console.log(response.data.foods,"!!!!!!!!!!!!!!!!");
+        console.log(response.data.medicines,"!!!!!!!!!!!!!!!!");
         dispatch(setProductPending(false));
-        dispatch(setProductShow(true, response.data.foods));
+        dispatch(setProductShow(true, response.data.medicines));
         // this.setState({
         //   data: response.data.foods
         // })

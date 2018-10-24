@@ -14,6 +14,7 @@ import ReportUs from './Components/ReportUs'
 import PageNotFound from './Components/PageNotFound'
 import CartItem from './Components/CartItem';
 import Profile from './Components/Profile';
+import Payment from './Components/Payment';
 
 class Routes extends Component{
     render(){
@@ -24,7 +25,7 @@ class Routes extends Component{
                 <Route path="/Home" component= {Homebasic}/>
                 <Route exact path="/login" component = {Login}/>
                 <Route path="/Signup" component = {Signup}/>
-                <Route exact path="/PostAd" component = {PostAd}/>
+                <Route exact path="/postAd" component = {PostAd}/>
                 <Route exact path="/foods" component = {Snacks}/>
                 {/* <Route exact path="/Food/Snacks" component = {Snacks}/> */}
                 <Route path="/Home" component = {Cards}/>
@@ -34,6 +35,7 @@ class Routes extends Component{
                 <Route path="/Profile" component = {Profile}/>
                 <Route exact path="/Product/:id" component = {Product}/>
                 <Route exact path="/Product/:id/CartItem" component = {CartItem}/>
+                <Route exact path="/product/:id/payment" component = {Payment}/>
                 {/* How to build the below product route */}
                 {/* <Route path="/category/subcategory/productid" component = {Product}/>                 */}
                 {/* <Route/> */}

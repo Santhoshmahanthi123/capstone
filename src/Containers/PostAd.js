@@ -1,119 +1,138 @@
-import React, { Component } from "react";
-
+import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom'
 import {
-  HelpBlock,
-  FormGroup,
-  FormControl,
-  ControlLabel,
-  Button,
-  Form
-} from "react-bootstrap";
-import axios from "axios";
+  Form, Select, InputNumber, Switch, Radio,
+  Slider, Button, Upload, Icon, Rate,
+  Input, Tooltip, Cascader, Row, Col, Checkbox, AutoComplete
+} from 'antd';
+
+const FormItem = Form.Item;
+const Option = Select.Option;
+const AutoCompleteOption = AutoComplete.Option;
+
 class PostAd extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedFile: null,
-      title: '',
-      description: "",
-      price: 0,
-      quantity: 3,
-
-    };
+  state={
+    isSaved: false
   }
-  fileHandler = e => {
-    this.setState({
-      selectedFile: e.target.files[0]
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+
+        console.log('Received values of form: ', values);
+        this.setState({
+          isSaved: true
+        })
+        alert("Successfully added the product!!")
+      }
     });
-    // console.log(e.target.files[0]);
-  };
+  }
 
-  handleSubmit = e => {
-    // uploading image logic
-    const fd = new FormData();
-    fd.append("image", this.state.selectedFile, this.state.selectedFile.name);
-    fd. append("title",this.state.title)
-    fd. append("quantity",this.state.quantity)
-    fd. append("price",this.state.price);
-    fd. append("description",this.state.description);
-    axios.post("URL", fd).then(res => {
-      console.log(res);
-    });
-
-
-  };
-  render() {
-    function FieldGroup({ id, label, help, ...props }) {
-      return (
-        <FormGroup controlId={id}>
-          <ControlLabel>{label}</ControlLabel>
-          <FormControl {...props} />
-          {help && <HelpBlock>{help}</HelpBlock>}
-        </FormGroup>
-      );
+  normFile = (e) => {
+    console.log('Upload event:', e);
+    if (Array.isArray(e)) {
+      return e;
     }
+    return e && e.fileList;
+  }
+
+  render() {
+    if(this.state.isSaved){
+     return <Redirect to={{
+        pathname:"/Profile"
+      }}/>
+    }
+    const { getFieldDecorator } = this.props.form;
+    
+     const formItemLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 8 },
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 16 },
+      },
+    };
+    const tailFormItemLayout = {
+      wrapperCol: {
+        xs: {
+          span: 24,
+          offset: 0,
+        },
+        sm: {
+          span: 16,
+          offset: 8,
+        },
+      },
+    };
     return (
-      <Form>
-        <FieldGroup
-          id="formControlsTitle"
-          type="text"
+      <Form onSubmit={this.handleSubmit}>
+      <h2>Post A Product!</h2>
+      <FormItem
+          {...formItemLayout}
           label="Title"
-          placeholder="Enter Title"
-          autoFocus
-          
-          // value={this.state.title}
-          onChange={e => this.setState({ title: e.target.value })}
-        />
-
-        <FormGroup controlId="formControlsSelect">
-          <ControlLabel>Select Category</ControlLabel>
-          <FormControl componentClass="select" placeholder="select">
-            <option value="select">select</option>
-            <option value="Food">Food</option>
-            <option value="Medicine">Medicine</option>
-            <option value="Other">Other</option>
-          </FormControl>
-        </FormGroup>
-        <FieldGroup
-          id="formControlsQuantity"
-          type="number"
-          label="Quantity"
-          min={1}
-          max={10}
-          defaultValue={3}
-          // onChange={e => this.setState({ quantity: e.target.value })}
-        />
-        <FieldGroup
-          id="formControlsPrice"
-          type="text"
-          label="Price per Item"
-          placeholder="Enter Price"
-          autoFocus
-          // value={this.state.title}
-          onChange={e => this.setState({ price: e.target.value })}
-        />
-        <FormGroup
-          controlId="formControlsDescrp"
-          // value={this.state.title}
-          // onChange={this.handleDescChange}
-
         >
-          <ControlLabel>Description</ControlLabel>
-          <FormControl componentClass="textarea" placeholder="textarea" onChange={e => this.setState({ description: e.target.value })} />
-        </FormGroup>
-        <FieldGroup
-          id="formControlsFile"
-          type="file"
+          {getFieldDecorator('title', {
+            rules: [{ required: true, message: 'Please product Title!', whitespace: true }],
+          })(
+            <Input />
+          )}
+        </FormItem>
+          <FormItem
+          {...formItemLayout}
+          label="Quantity"
+        >
+          {getFieldDecorator('input-number', { initialValue:2 })(
+            <InputNumber min={1} max={20} />
+          )}
+          </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label="Price (INR)"
+        >
+          {getFieldDecorator('price', {
+            rules: [{ required: true, message: 'Please product Price!', whitespace: true }],
+          })(
+            <Input />
+          )}
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label="Desctiption"
+        >
+          {getFieldDecorator('description', {
+            rules: [{ required: true, message: 'Please product description!', whitespace: true }],
+          })(
+            <Input />
+          )}
+        </FormItem>
+          <FormItem
+          {...formItemLayout}
           label="Image"
-          // required
-          onChange={this.fileHandler}
-        />
+          
+        >
+          {getFieldDecorator('upload', {
+            valuePropName: 'fileList',
+            getValueFromEvent: this.normFile,
+          })(
+            <Upload name="logo" action="/upload.do" listType="picture">
+              <Button>
+                <Icon type="upload" /> Click to upload
+              </Button>
+            </Upload>
+          )}
+        </FormItem>
 
-        <Button type="submit" onClick={this.handleSubmit}>
-          Submit
-        </Button>
+        <FormItem
+          wrapperCol={{ span: 12, offset: 6 }}
+        >
+          <Button type="primary" htmlType="submit">Submit</Button>
+        </FormItem>
       </Form>
     );
   }
 }
-export default PostAd;
+
+const WrappedDemo = Form.create()(PostAd);
+export default WrappedDemo;

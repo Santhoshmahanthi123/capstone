@@ -95,12 +95,12 @@ class Home extends Component {
                 <Link to="/Login">Login</Link>
               </span>
             </Menu.Item>
-            <Menu.Item key="12">
+            {/* <Menu.Item key="12">
               <Icon type="home" />
               <span>
                 <Link to="/PostAd">Ad</Link>
               </span>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item key="13">
               <Icon type="home" />
               <span>

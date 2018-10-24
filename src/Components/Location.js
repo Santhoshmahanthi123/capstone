@@ -7,7 +7,7 @@ export class MapContainer extends React.Component {
   state = { userLocation: { lat: 32, lng: 32 }, loading: true , address: null};
 
   componentWillMount() {
-   // Geocode.setApiKey("AIzaSyB7u8Qzi6Ca4e5DwMN9uIRfJEnHDOKNEt8");
+   Geocode.setApiKey("AIzaSyABr5_Vg24LPsXq_sdk23S7cz58iGAa0hg");
     navigator.geolocation.getCurrentPosition(
       position => {
         console.log("##############", position);
@@ -17,22 +17,25 @@ export class MapContainer extends React.Component {
           userLocation: { lat: latitude, lng: longitude },
           loading: false
         });
-
+        Geocode.fromLatLng(latitude, longitude).then(
+          response => {
+            const address = response.results[0].formatted_address;
+            console.log(response.results[0],"**********ADDRESS**********");
+            this.setState({
+              address: address
+            })
+          },
+          error =>{
+            console.log(error)
+          }
+        );
       
       },
       () => {
         this.setState({ loading: false });
       }
     );
-    Geocode.fromLatLng(this.state.userLocation.lat, this.state.userLocation.lng).then(
-      response => {
-        const address = response.results[0].formatted_address;
-        console.log(address,"**********ADDRESS**********");
-        this.setState({
-          address: address
-        })
-      }
-    );
+    
   }
 
   render() {
