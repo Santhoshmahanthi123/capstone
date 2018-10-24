@@ -15,10 +15,7 @@ const mongoose = require('mongoose');
                       _id: doc._id,
                       food : doc.food,
                       quantity : doc.quantity,
-                      request : {
-                          type :'GET',
-                          url :'https://capstone-inneed.herokuapp.com/orders' + doc._id
-                      }
+                     
   
                 }
             })   
@@ -58,10 +55,7 @@ const mongoose = require('mongoose');
                 title: result.title,
                 quantity : result.quantity
             },
-            request : {
-                type :'GET',
-                url :'https://capstone-inneed.herokuapp.com/orders' + result._id
-            }
+          
         });
     })
     .catch(err =>{
@@ -84,11 +78,11 @@ exports.orders_get_order = (req,res,next)=>{
         }
         res.status(200).json({
             order : order,
-            request:{
-                type :'GET',
-                url :'https://capstone-inneed.herokuapp.com/orders'
- ,
-            }
+//             request:{
+//                 type :'GET',
+//                 url :'https://capstone-inneed.herokuapp.com/orders'
+//  ,
+//             }
         });
         
     })
@@ -106,14 +100,14 @@ exports.orders_get_order = (req,res,next)=>{
    .then(order => {
     res.status(200).json({
         message : 'Order deleted!',
-        request : {
-            type : 'POST',
-            url : 'https://capstone-inneed.herokuapp.com/products',
-            body : {
-                productId : 'ID',
-                quantity : 'Number'
-            }
-        }
+        // request : {
+        //     type : 'POST',
+        //     url : 'https://capstone-inneed.herokuapp.com/products',
+        //     body : {
+        //         productId : 'ID',
+        //         quantity : 'Number'
+        //     }
+        // }
     })
    }) 
    .catch( err => {
