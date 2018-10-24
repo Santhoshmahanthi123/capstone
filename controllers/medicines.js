@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
-const Food = require('../models/food');
+const Medicine = require('../models/medicine');
 
-exports.foods_get_all = (req, res, next) => {
-    Food.find()
+exports.medicines_get_all = (req, res, next) => {
+    Medicine.find()
     .select('image title price description quantity')
     .exec()
     .then(docs => {
         const response = {
             count : docs.length,
-            foods : docs.map(doc => {
+            medicines : docs.map(doc => {
                 return {
                     title : doc.title,
                     image : 'https://capstone-inneed.herokuapp.com/public/uploads/'+doc.image,
@@ -19,7 +19,7 @@ exports.foods_get_all = (req, res, next) => {
                 
                 request : {
                     type : 'GET',
-                    url : 'https://capstone-inneed.herokuapp.com/foods' + doc._id
+                    url : 'https://capstone-inneed.herokuapp.com/medicines/' + doc._id
 
                      }
                 };
@@ -37,8 +37,9 @@ exports.foods_get_all = (req, res, next) => {
 };
 
 
-exports.foods_create_food = (req, res, next) => {
-    const food = new Food ({
+
+exports.medicines_create_medicine = (req, res, next) => {
+    const medicine = new Medicine ({
         title : req.body.title,
         price : req.body.price,
         quantity : req.body.quantity,
@@ -46,16 +47,16 @@ exports.foods_create_food = (req, res, next) => {
         image : req.newFileName,
         _id : new mongoose.Types.ObjectId(),
      });
-    food
+    medicine
     .save()
     .then(result => {
         console.log(result);
         res.status(200).json({
-            message : "created food ",
-            createdFood : food,
+            message : "created medicine",
+            createdMedicine : medicine,
             request : {
                 type : "GET",
-                url : "https://capstone-inneed.herokuapp.com/foods" + result._id
+                url : "https://capstone-inneed.herokuapp.com/medicines/" + result._id
             }
         });
     
@@ -68,18 +69,18 @@ exports.foods_create_food = (req, res, next) => {
     });
 };
 
-exports.foods_get_food = (req, res, next) => {
-    const id =  req.params.foodId;
-    Food.findById(id)
+exports.medicines_get_medicine = (req, res, next) => {
+    const id =  req.params.medicineId;
+    Medicine.findById(id)
     .exec()
     .then(doc => {
         console.log("fetching data from database", doc);
         if(doc){
             res.status(200).json({
-                Food : doc,
+                Medicine : doc,
                 request : {
                     type : 'GET',
-                    url : "https://capstone-inneed.herokuapp.com/foods" + doc._id
+                    url : "https://capstone-inneed.herokuapp.com/medicines/" + doc._id
                 }
              });
         } else {
@@ -123,16 +124,16 @@ exports.foods_get_food = (req, res, next) => {
 //   };
  
 
-exports.foods_delete_food = (req, res, next) => {
-    const id = req.params.foodId;
-    Food.remove({_id : id })
+exports.medicines_delete_medicine = (req, res, next) => {
+    const id = req.params.medicineId;
+    Medicine.remove({_id : id })
     .exec()
     .then(result => {
      res.status(200).json({
-         message : 'Food item deleted!',
+         message : 'Medicine item deleted!',
          request : {
              type : 'POST',
-             url : "https://capstone-inneed.herokuapp.com/foods",
+             url : "https://capstone-inneed.herokuapp.com/medicines",
              body : {
                  title : 'String',
                  price : 'Number'

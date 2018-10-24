@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const foodSchema = new mongoose.Schema({
+const medicineSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     title: {
         type: String,
@@ -22,23 +22,31 @@ const foodSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    image: {
+    image : {
         type: String,
         required : true
         
     },
+    // user : {
+    //     id:{
+    //         type: mongoose.Schema.Types.ObjectId, 
+    //         ref: 'User',
+          
+    //     },
+       
+    // },
         
     
     date : {
         type : Date,
         default : Date.now
     },
-},
+ },
     {
-        collection: 'foods'
+        collection: 'medicines'
     
      }
 
 );
 
-module.exports = mongoose.model("Food", foodSchema);
+module.exports = mongoose.model("Medicine", medicineSchema);

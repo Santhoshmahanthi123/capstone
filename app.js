@@ -4,10 +4,12 @@ const express = require('express');
 const port = process.env.PORT || 3030;
 const app = express();
 const morgan = require('morgan');
+const path = require('path');
 app.use(cors());
 const foodRoutes = require('./routes/foods');
 const userRoutes = require('./routes/user');
 const orderRoutes = require('./routes/orders');
+const medicineRoutes = require('./routes/medicines');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const development = process.env.NODE_ENV;
@@ -58,9 +60,10 @@ app.get('/twilio',(req,res)=>{
 
 app.use('/user',userRoutes);
 app.use('/foods',foodRoutes);
-app.use('/orders',orderRoutes)
-app.use('/public/uploads',express.static('./public/uploads'));
+app.use('/orders',orderRoutes);
+app.use('/medicines',medicineRoutes);
 
+app.use('/public/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 app.use((req,res,next)=>{
     const error = new Error('Not found!');

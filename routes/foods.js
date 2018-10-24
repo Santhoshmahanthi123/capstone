@@ -2,13 +2,17 @@ const express = require("express");
 const router  = express.Router();
 const mongoose = require("mongoose");
 const multer = require('multer'); 
+// const User = require('User');
+
 const FoodsController = require('../controllers/foods');
+
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
     destination: './public/uploads/',
      filename: function(req, file, callback) {
-      callback(null, new Date().toISOString() + file.originalname);
+      req.newFileName = new Date().toISOString() + file.originalname;
+      callback(null, req.newFileName);
     }
   });
   
@@ -29,7 +33,9 @@ const storage = multer.diskStorage({
     fileFilter: fileFilter
   });
 
-router.get('/search',FoodsController.search.get)
+
+//...............Food Routes.............
+//router.get('/search',FoodsController.search)
 router.get('/',FoodsController.foods_get_all);
 
 router.post('/', upload.single('image'),FoodsController.foods_create_food);
@@ -39,5 +45,14 @@ router.get('/:foodId',FoodsController.foods_get_food);
 // router.patch('/:foodId',FoodsController.foods_update_food);
 
 router.delete('/:foodId',FoodsController.foods_delete_food);
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
