@@ -4,11 +4,7 @@ const mongoose = require("mongoose");
 const multer = require('multer'); 
 // const User = require('User');
 
-
-
-const FoodsController = require('../controllers/foods');
-
-
+const MedicinesController = require('../controllers/medicines');
 
 
 
@@ -38,20 +34,21 @@ const storage = multer.diskStorage({
   });
 
 
-//...............Food Routes.................
 
-router.get('/',FoodsController.foods_get_all);
 
-router.post('/', upload.single('image'),FoodsController.foods_create_food);
 
-router.get('/:foodId',FoodsController.foods_get_food);
+
+//...............Medicine Routes.................
+
+router.get('/',MedicinesController.medicines_get_all);
+
+router.post('/', upload.single('image'),MedicinesController.medicines_create_medicine);
+
+router.get('/:medicineId',MedicinesController.medicines_get_medicine);
 
 // router.patch('/:foodId',FoodsController.foods_update_food);
 
-router.delete('/:foodId',FoodsController.foods_delete_food);
-
-
-
+router.delete('/:medicineId',MedicinesController.medicines_delete_medicine);
 
 
 

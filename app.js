@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 const morgan = require('morgan');
 
 const foods = require('./models/food');
+const medicines = require('./models/medicine');
 
 app.get('/',(req, res, next) => {    
     res.send('Welcome to InNeed 24/7 ');
@@ -20,6 +21,8 @@ mongoose.Promise = global.Promise;
 
 //route
 const foodRoutes = require('./routes/foods');
+const medicineRoutes = require('./routes/medicines');
+
  
 //front-end for require from helpers->hbs.js
 // const select = require('./helpers/hbs');
@@ -46,6 +49,7 @@ if(req.method === 'OPTIONS'){
 
 //routes 
 app.use('/foods',foodRoutes);
+app.use('/medicines',medicineRoutes);
 
 //error handling 
 app.use((req, res, next) => {
