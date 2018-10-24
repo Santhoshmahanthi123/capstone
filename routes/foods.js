@@ -2,6 +2,8 @@ const express = require("express");
 const router  = express.Router();
 const mongoose = require("mongoose");
 const multer = require('multer'); 
+const checkAuth = require('../middleware/check-auth');
+
 // const User = require('User');
 
 const FoodsController = require('../controllers/foods');
@@ -36,15 +38,15 @@ const storage = multer.diskStorage({
 
 //...............Food Routes.............
 //router.get('/search',FoodsController.search)
-router.get('/',FoodsController.foods_get_all);
+router.get('/',checkAuth,FoodsController.foods_get_all);
 
-router.post('/', upload.single('image'),FoodsController.foods_create_food);
+router.post('/',checkAuth, upload.single('image'),FoodsController.foods_create_food);
 
-router.get('/:foodId',FoodsController.foods_get_food);
+router.get('/:foodId',checkAuth,FoodsController.foods_get_food);
 
 // router.patch('/:foodId',FoodsController.foods_update_food);
 
-router.delete('/:foodId',FoodsController.foods_delete_food);
+router.delete('/:foodId',checkAuth,FoodsController.foods_delete_food);
 
 
 

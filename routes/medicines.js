@@ -2,7 +2,7 @@ const express = require("express");
 const router  = express.Router();
 const mongoose = require("mongoose");
 const multer = require('multer'); 
-// const User = require('User');
+const checkAuth = require('../middleware/check-auth');
 
 const MedicinesController = require('../controllers/medicines');
 
@@ -43,13 +43,13 @@ const upload = multer({
 
 router.get('/',MedicinesController.medicines_get_all);
 
-router.post('/', upload.single('image'), MedicinesController.medicines_create_medicine);
+router.post('/',checkAuth, upload.single('image'), MedicinesController.medicines_create_medicine);
 
-router.get('/:medicineId',MedicinesController.medicines_get_medicine);
+router.get('/:medicineId',checkAuth,MedicinesController.medicines_get_medicine);
 
 // router.patch('/:foodId',FoodsController.foods_update_food);
 
-router.delete('/:medicineId',MedicinesController.medicines_delete_medicine);
+router.delete('/:medicineId',checkAuth,MedicinesController.medicines_delete_medicine);
 
 
 
