@@ -3,11 +3,12 @@ const router  = express.Router();
 const mongoose = require("mongoose");
 const multer = require('multer'); 
 const FoodsController = require('../controllers/foods');
+
 // Set The Storage Engine
 const storage = multer.diskStorage({
     destination: './public/uploads/',
      filename: function(req, file, callback) {
-      callback(null,file.originalname);
+      callback(null, new Date().toISOString() + file.originalname);
     }
   });
   
@@ -38,11 +39,5 @@ router.get('/:foodId',FoodsController.foods_get_food);
 // router.patch('/:foodId',FoodsController.foods_update_food);
 
 router.delete('/:foodId',FoodsController.foods_delete_food);
-
-
-
-
-
-
 
 module.exports = router;
