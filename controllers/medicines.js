@@ -11,7 +11,7 @@ exports.medicines_get_all = (req, res, next) => {
             medicines : docs.map(doc => {
                 return {
                     title : doc.title,
-                    image : doc.image,
+                    image : 'http://localhost:3030/public/uploads/'+doc.image,
                     price : doc.price,
                     _id   : doc._id,
                     quantity : doc.quantity,
@@ -37,13 +37,14 @@ exports.medicines_get_all = (req, res, next) => {
 };
 
 
+
 exports.medicines_create_medicine = (req, res, next) => {
     const medicine = new Medicine ({
         title : req.body.title,
         price : req.body.price,
         quantity : req.body.quantity,
         description : req.body.description,
-        image : req.body.image,
+        image : req.newFileName,
         _id : new mongoose.Types.ObjectId(),
      });
     medicine

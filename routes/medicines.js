@@ -8,31 +8,32 @@ const MedicinesController = require('../controllers/medicines');
 
 
 
+
 // Set The Storage Engine
 const storage = multer.diskStorage({
-    destination: './public/uploads/',
-     filename: function(req, file, callback) {
-      callback(null, new Date().toISOString() + file.originalname);
-    }
-  });
-  
-  const fileFilter = (req, file, callback) => {
-    // reject a file
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-      callback(null, true);
-    } else {
-      callback(null, false);
-    }
-  };
-  // stores in uploads folder
-  const upload = multer({
-    storage: storage,
-    limits: {
-      fileSize: 1024 * 1024 * 5
-    },
-    fileFilter: fileFilter
-  });
+  destination: './public/uploads/',
+   filename: function(req, file, callback) {
+    req.newFileName = new Date().toISOString() + file.originalname;
+    callback(null, req.newFileName);
+  }
+});
 
+const fileFilter = (req, file, callback) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    callback(null, true);
+  } else {
+    callback(null, false);
+  }
+};
+// stores in uploads folder
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
 
 
 
@@ -42,7 +43,7 @@ const storage = multer.diskStorage({
 
 router.get('/',MedicinesController.medicines_get_all);
 
-router.post('/', upload.single('image'),MedicinesController.medicines_create_medicine);
+router.post('/', upload.single('image'), MedicinesController.medicines_create_medicine);
 
 router.get('/:medicineId',MedicinesController.medicines_get_medicine);
 

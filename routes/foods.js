@@ -4,19 +4,15 @@ const mongoose = require("mongoose");
 const multer = require('multer'); 
 // const User = require('User');
 
-
-
 const FoodsController = require('../controllers/foods');
-
-
-
 
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
     destination: './public/uploads/',
      filename: function(req, file, callback) {
-      callback(null, new Date().toISOString() + file.originalname);
+      req.newFileName = new Date().toISOString() + file.originalname;
+      callback(null, req.newFileName);
     }
   });
   

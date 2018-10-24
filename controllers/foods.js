@@ -11,7 +11,7 @@ exports.foods_get_all = (req, res, next) => {
             foods : docs.map(doc => {
                 return {
                     title : doc.title,
-                    image : doc.image,
+                    image : 'http://localhost:3030/public/uploads/'+doc.image,
                     price : doc.price,
                     _id   : doc._id,
                     quantity : doc.quantity,
@@ -43,7 +43,7 @@ exports.foods_create_food = (req, res, next) => {
         price : req.body.price,
         quantity : req.body.quantity,
         description : req.body.description,
-        image : req.body.image,
+        image : req.newFileName,
         _id : new mongoose.Types.ObjectId(),
      });
     food
@@ -97,30 +97,30 @@ exports.foods_get_food = (req, res, next) => {
     });
 }
 
-exports.foods_update_food = (req, res, next) => {
-    const id = req.params.foodId;
-    const updateOps = {};
-    for(const ops of req.body) {
-      updateOps[ops.propName] = ops.value;
-    }
-    Food.update({ _id: id }, { $set: updateOps })
-      .exec()
-      .then(result => {
-        res.status(200).json({
-          message: "Food updated",
-          request: {
-            type: "GET",
-            url: "http://localhost:3030/foods/" + id
-          }
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({
-          error: err
-        });
-      });
-  };
+// exports.foods_update_food = (req, res, next) => {
+//     const id = req.params.foodId;
+//     const updateOps = {};
+//     for(const ops of req.body) {
+//       updateOps[ops.propName] = ops.value;
+//     }
+//     Food.update({ _id: id }, { $set: updateOps })
+//       .exec()
+//       .then(result => {
+//         res.status(200).json({
+//           message: "Food updated",
+//           request: {
+//             type: "GET",
+//             url: "http://localhost:3030/foods/" + id
+//           }
+//         });
+//       })
+//       .catch(err => {
+//         console.log(err);
+//         res.status(500).json({
+//           error: err
+//         });
+//       });
+//   };
  
 
 exports.foods_delete_food = (req, res, next) => {

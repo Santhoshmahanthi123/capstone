@@ -22,9 +22,9 @@ const medicineSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    image: {
+    image : {
         type: String,
-        required : false
+        required : true
         
     },
     // user : {

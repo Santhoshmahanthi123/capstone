@@ -4,9 +4,17 @@ const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
+const path = require('path');
+
+
+app.use(bodyParser.urlencoded({extended : true }));
+app.use(bodyParser.json());
+
+app.use('/public/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 const foods = require('./models/food');
 const medicines = require('./models/medicine');
+
 
 app.get('/',(req, res, next) => {    
     res.send('Welcome to InNeed 24/7 ');
@@ -30,8 +38,7 @@ const medicineRoutes = require('./routes/medicines');
 
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended : true }));
-app.use(bodyParser.json());
+
 
 
 //CORS
