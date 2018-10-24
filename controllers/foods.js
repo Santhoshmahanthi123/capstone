@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Food = require('../models/food');
-
+const fs = require('fs');
 exports.foods_get_all = (req, res, next) => {
     Food.find()
     .select('image title price')
@@ -19,7 +19,7 @@ exports.foods_get_all = (req, res, next) => {
                 
                 request : {
                     type : 'GET',
-                    url : 'http://localhost:3030/foods/' + doc._id
+                    url : 'http://localhost:3000/foods/' + doc._id
 
                      }
                 };
@@ -38,6 +38,7 @@ exports.foods_get_all = (req, res, next) => {
 
 
 exports.foods_create_food = (req, res, next) => {
+    console.log("Chal raha hai");
     const food = new Food ({
         title : req.body.title,
         price : req.body.price,
@@ -55,7 +56,7 @@ exports.foods_create_food = (req, res, next) => {
             createdFood : food,
             request : {
                 type : "GET",
-                url : "http://localhost:3030/foods/" + result._id
+                url : "http://localhost:3000/foods" + result._id
             }
         });
     
@@ -79,7 +80,7 @@ exports.foods_get_food = (req, res, next) => {
                 Food : doc,
                 request : {
                     type : 'GET',
-                    url : "http://localhost:3030/foods/" + doc._id
+                    url : "http://localhost:3000/public/uploads/2018-10-23T12:15:16.832Zbananas.jpg" ,
                 }
              });
         } else {

@@ -58,7 +58,7 @@ app.get('/twilio',(req,res)=>{
 app.use('/user',userRoutes);
 app.use('/foods',foodRoutes);
 app.use('/orders',orderRoutes)
-app.use('/public/uploads',express.static('uploads'));
+app.use('/public/uploads',express.static('./public/uploads'));
 
 
 app.use((req,res,next)=>{

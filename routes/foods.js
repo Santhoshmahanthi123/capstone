@@ -2,18 +2,16 @@ const express = require("express");
 const router  = express.Router();
 const mongoose = require("mongoose");
 const multer = require('multer'); 
-
 const FoodsController = require('../controllers/foods');
-
 // Set The Storage Engine
 const storage = multer.diskStorage({
     destination: './public/uploads/',
      filename: function(req, file, callback) {
-      callback(null, new Date().toISOString() + file.originalname);
+      callback(null,file.originalname);
     }
   });
   
-  const file = (req, file, callback) => {
+  const fileFilter = (req, file, callback) => {
     // reject a file
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
       callback(null, true);
@@ -27,7 +25,7 @@ const storage = multer.diskStorage({
     limits: {
       fileSize: 1024 * 1024 * 5
     },
-    file : file
+    fileFilter: fileFilter
   });
 
 
