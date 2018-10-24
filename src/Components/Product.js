@@ -2,11 +2,11 @@ import React, { Component } from "react";
 // import { fakeData } from "./HomeBasic";
 import { Redirect } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import file from '../test'
+import file from "../test";
 class Product extends Component {
   constructor(props) {
     super(props);
-    console.log("Product constructor ", props)
+    console.log("Product constructor ", props);
     this.state = {
       buyClicked: false,
       chatClicked: false
@@ -27,7 +27,8 @@ class Product extends Component {
   };
   render() {
     const { id } = this.props.match.params;
-    const { data } = this.props.data;
+    const { data } = this.props.location.state.data;
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^", this.props.location.state.data);
     if (this.state.buyClicked) {
       return (
         <Redirect
@@ -52,7 +53,11 @@ class Product extends Component {
     //console.log(id);
     return (
       <div>
-        {data.map((product, index) => {
+        <h1>{this.props.location.state.data.title}</h1>
+        <Button onClick={this.handleClick}>Buy</Button>
+        <Button onClick={this.handleChatClick}>Chat</Button>
+        <Button onClick={this.handleMessageClick}>Message</Button>
+        {/* {data.map((product, index) => {
           if (product.id == id) {
             return (
               <div key={index}>
@@ -63,7 +68,7 @@ class Product extends Component {
               </div>
             );
           }
-        })}
+        })} */}
       </div>
     );
   }
