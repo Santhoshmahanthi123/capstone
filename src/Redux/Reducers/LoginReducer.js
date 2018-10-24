@@ -1,8 +1,8 @@
-import Promise from "es6-promise";
+// import Promise from "es6-promise";
 //import file from "../file.json";
 import Axios from "axios";
 
-import { setLoginSuccess, setLoginPending, setLoginError, setLoginClick } from '../Actions/LoginAction'
+import { setLoginSuccess, setLoginPending, setLoginError } from '../Actions/LoginAction'
 const LOGIN_PENDING = "LOGIN_PENDING";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGIN_ERROR = "LOGIN_ERROR";

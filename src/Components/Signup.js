@@ -2,15 +2,9 @@ import React, { Component } from "react";
 import {
   Form,
   Input,
-  Tooltip,
-  Icon,
-  Cascader,
   Select,
-  Row,
-  Col,
   Checkbox,
   Button,
-  AutoComplete
 } from "antd";
 import { connect } from "react-redux";
 
@@ -19,7 +13,7 @@ import { signupFn } from "../Redux/Reducers/SignupReducer";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
+// const AutoCompleteOption = AutoComplete.Option;
 
 class RegistrationForm extends Component {
   state = {
@@ -69,8 +63,7 @@ class RegistrationForm extends Component {
       )
   }
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult } = this.state;
-
+   
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -101,11 +94,7 @@ class RegistrationForm extends Component {
         <Option value="1">+1</Option>
       </Select>
     );
-
-    const websiteOptions = autoCompleteResult.map(website => (
-      <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-    ));
-    let { username, password } = this.state;
+    // let { username, password } = this.state;
     let { isSignupPending, isSignupSuccess, SignupError } = this.props;
     console.log("Signup Success is :", isSignupSuccess);
     return (

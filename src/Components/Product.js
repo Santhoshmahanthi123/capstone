@@ -2,7 +2,8 @@ import React, { Component } from "react";
 // import { fakeData } from "./HomeBasic";
 import { Redirect } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import file from "../test";
+// import file from "../test";
+import Axios from 'axios'
 class Product extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,7 @@ class Product extends Component {
     };
   }
 
-  handleClick = () => {
+  handleBuyClick = () => {
     //Redirect to Cart page
     this.setState({
       buyClicked: true
@@ -25,9 +26,22 @@ class Product extends Component {
       chatClicked: true
     });
   };
+  handleMessageClick = () =>{
+    // call backend route for messaging
+    Axios
+    .get("https://capstone-inneed.herokuapp.com/twilio")
+    .then((response) => {
+      console.log(response, "%%%%%^^^^^^$$$$$$$$");
+      alert("Message sent! You can soon expect a call back!!")
+    })
+    .catch((error)=> {
+      console.log(error);
+    });
+ 
+  }
   render() {
-    const { id } = this.props.match.params;
-    const { data } = this.props.location.state.data;
+    // const { id } = this.props.match.params;
+    // const { data } = this.props.location.state.data;
     console.log("^^^^^^^^^^^^^^^^^^^^^^^", this.props.location.state.data);
     if (this.state.buyClicked) {
       return (
@@ -44,7 +58,8 @@ class Product extends Component {
       return (
         <Redirect
           to={{
-            pathname: "/chat"
+            pathname: "/chat",
+            state: { data: this.props.location.state.data }
           }}
         />
       );
@@ -54,7 +69,7 @@ class Product extends Component {
     return (
       <div>
         <h1>{this.props.location.state.data.title}</h1>
-        <Button onClick={this.handleClick}>Buy</Button>
+        <Button onClick={this.handleBuyClick}>Buy</Button>
         <Button onClick={this.handleChatClick}>Chat</Button>
         <Button onClick={this.handleMessageClick}>Message</Button>
         {/* {data.map((product, index) => {

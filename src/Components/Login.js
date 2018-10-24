@@ -27,7 +27,7 @@ class NormalLoginForm extends Component {
   };
 
   render() {
-    let { username, password } = this.state;
+    //let { username, password } = this.state;
     let { isLoginPending, isLoginSuccess, loginError, user } = this.props;
     // console.log(user+"  Local user")
     if (this.props.nextPage) {

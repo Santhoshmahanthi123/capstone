@@ -1,4 +1,4 @@
-import Promise from "es6-promise";
+// import Promise from "es6-promise";
 //import file from '../file.json';
 import Axios from "axios";
 import {
@@ -7,7 +7,7 @@ import {
   SignupError
 } from "../Actions/SignupAction";
 const BUTTON_CANCEL = "BUTTON_CANCEL";
-const LOGINBUTTON_CLICK = "LOGINBUTTON_CLICK";
+// const LOGINBUTTON_CLICK = "LOGINBUTTON_CLICK";
 const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 const SIGNUP_PENDING = "SIGNUP_PENDING";
 const SIGNUP_ERROR = "SIGNUP_ERROR";
@@ -27,20 +27,20 @@ export function signupReducer(
       return {
         ...state,
         isSignupPending: action.isSignupPending,
-        visibleModal: true
+        // visibleModal: true
       };
     case SIGNUP_SUCCESS:
       return {
         ...state,
         isSignupSuccess: action.isSignupSuccess,
         user: action.payload,
-        visibleModal: false
+        // visibleModal: false
       };
     case SIGNUP_ERROR:
       return {
         ...state,
         SignupError: action.SignupError,
-        SignupError: true
+        // SignupError: true
       };
     case BUTTON_CANCEL:
       return {

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
-import Home from './Components/Home';
+// import Home from './Components/Home';
 import Login from './Components/Login';
 import PostAd from './Containers/PostAd';
 import Signup from './Components/Signup';
 import Product from './Components/Product';
-import ImageSlider from './Components/ImageSlider'
+// import ImageSlider from './Components/ImageSlider'
 import Snacks from './Components/Snacks'
 import Cards from './Components/Cards'
 import Chat from './Components/chat'
@@ -38,6 +38,8 @@ class Routes extends Component{
                 {/* <Route path="/category/subcategory/productid" component = {Product}/>                 */}
                 {/* <Route/> */}
                 <Route component={PageNotFound} />
+
+                {/* Implement the logic for secured routes for cart, product, payment, chat */}
             </Switch>
         )
     }

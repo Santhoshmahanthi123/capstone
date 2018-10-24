@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import { Layout, Menu, Breadcrumb, Icon } from "antd";
+import { Layout, Menu, Icon } from "antd";
 import "antd/dist/antd.css";
 // import Search from "./Search";
-import Signup from "./Signup";
-import ImageSlider from "./ImageSlider";
+// import Signup from "./Signup";
+// import ImageSlider from "./ImageSlider";
 import GoogleApiWrapper from "./Location";
-import Cards from "./Cards";
+// import Cards from "./Cards";
 import Routes from "../Routes";
-import PostAd from '../Containers/PostAd';
-import Login from "./Login";
+// import PostAd from '../Containers/PostAd';
+// import Login from "./Login";
 import { Input } from "antd";
-const { Header, Content, Footer, Sider } = Layout;
+const {  Content, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const Search = Input.Search;
 
