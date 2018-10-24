@@ -129,3 +129,20 @@ exports.users_get = (req,res,next) => {
         });
     });
 }
+
+exports.users_get_all = (req,res,next) => {
+    User.find()
+    .select('email name address mobile pincode')
+    .exec()
+    .then(result => {
+        console.log(result); 
+        res.send(result);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error : err
+        });
+    });
+}
+
