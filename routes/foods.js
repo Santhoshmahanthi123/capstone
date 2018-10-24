@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
     fileFilter: fileFilter
   });
 
-
+router.get('/search',FoodsController.search.get)
 router.get('/',FoodsController.foods_get_all);
 
 router.post('/', upload.single('image'),FoodsController.foods_create_food);

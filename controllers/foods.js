@@ -98,30 +98,53 @@ exports.foods_get_food = (req, res, next) => {
     });
 }
 
-// exports.foods_update_food = (req, res, next) => {
-//     const id = req.params.foodId;
-//     const updateOps = {};
-//     for(const ops of req.body) {
-//         updateOps[ops.propName] = ops.value;
-//     }
-//     Food.update({_id : id},{$set : updateOps})
-//     .exec()
-//     .then(result => {
-//         console.log(result);
-//         res.status(200).json({
-//             message : "product updated",
-//             request : {
-//                 type : 'GET',
-//                 url : 'http:localhost:3030/foods/' + id
-//             }
-//         });
-//     })
-//     .catch(err => {
-//         res.status(500).json({
-//             error : err
-//         });
-//     });
-// }; 
+exports.foods_search = (req, res, next) => {
+    const id = req.params.title;
+    Food.findById(id)
+    .select('title price')
+    .exec()
+    .then(doc => {
+        console.log("fetching data from database", doc);
+        if(doc){
+            res.status(200).json({
+                Food : doc,
+                request : {
+                    type : 'GET',
+                    url : "http://localhost:3000/public/uploads/2018-10-23T12:15:16.832Zbananas.jpg" ,
+                }
+             });
+        } else {
+            // url error
+            res.status(404).json({
+                message : "Not a valid url"
+            })
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+             error : err
+            });
+    });
+
+    
+}; 
+exports.search = {
+    get: function (req, res) {
+       const query = {};
+       if(req.query.foodQuery){
+         query.state = { "$regex": req.query.foodQuery, "$options": "i" };
+       }
+       Food.find(query, function(err, result) {
+           if (err) {
+               console.log('Not a Valid Search');
+               res.status(500).send(err, 'Not a Valid Search');
+           }else {
+               res.json(result);
+           }            
+       });
+    }
+   };
 
 exports.foods_delete_food = (req, res, next) => {
     const id = req.params.foodId;
