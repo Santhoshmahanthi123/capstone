@@ -97,30 +97,31 @@ exports.foods_get_food = (req, res, next) => {
     });
 }
 
-// exports.foods_update_food = (req, res, next) => {
-//     const id = req.params.foodId;
-//     const updateOps = {};
-//     for(const ops of req.body) {
-//         updateOps[ops.propName] = ops.value;
-//     }
-//     Food.update({_id : id},{$set : updateOps})
-//     .exec()
-//     .then(result => {
-//         console.log(result);
-//         res.status(200).json({
-//             message : "product updated",
-//             request : {
-//                 type : 'GET',
-//                 url : 'http:localhost:3030/foods/' + id
-//             }
-//         });
-//     })
-//     .catch(err => {
-//         res.status(500).json({
-//             error : err
-//         });
-//     });
-// }; 
+exports.foods_update_food = (req, res, next) => {
+    const id = req.params.foodId;
+    const updateOps = {};
+    for(const ops of req.body) {
+      updateOps[ops.propName] = ops.value;
+    }
+    Food.update({ _id: id }, { $set: updateOps })
+      .exec()
+      .then(result => {
+        res.status(200).json({
+          message: "Food updated",
+          request: {
+            type: "GET",
+            url: "http://localhost:3030/foods/" + id
+          }
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  };
+ 
 
 exports.foods_delete_food = (req, res, next) => {
     const id = req.params.foodId;
