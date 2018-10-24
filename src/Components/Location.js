@@ -4,9 +4,9 @@ import Geocode from "react-geocode";
 
 
 export class MapContainer extends React.Component {
-  state = { userLocation: { lat: 32, lng: 32 }, loading: true };
+  state = { userLocation: { lat: 32, lng: 32 }, loading: true , address: null};
 
-  componentDidMount(props) {
+  componentWillMount() {
    // Geocode.setApiKey("AIzaSyB7u8Qzi6Ca4e5DwMN9uIRfJEnHDOKNEt8");
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -27,7 +27,10 @@ export class MapContainer extends React.Component {
     Geocode.fromLatLng(this.state.userLocation.lat, this.state.userLocation.lng).then(
       response => {
         const address = response.results[0].formatted_address;
-        console.log(address,"********************");
+        console.log(address,"**********ADDRESS**********");
+        this.setState({
+          address: address
+        })
       }
     );
   }
@@ -40,7 +43,7 @@ export class MapContainer extends React.Component {
       return null;
     }
 
-    return <h3>Hiiiii</h3>;
+    return <h3>{this.state.address}</h3>;
   }
 }
 

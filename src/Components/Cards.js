@@ -35,15 +35,18 @@ class Cards extends Component {
                           >
                             {" "}
                             <img
-                              src="../1.png"
+                              src={product.image}
                               style={{ width: 40, height: 40 }}
                             />
                           </Link>
                         </td>
                       </tr>
                       <tr>
-                        <td>Price: {product.price}</td>
+                      <td>Price: {product.price}</td>
                       </tr>
+                      {/* <tr>
+                      <td>Description: {product.description}</td>
+                      </tr> */}
                     </tbody>
                   </table>
                 </Card>

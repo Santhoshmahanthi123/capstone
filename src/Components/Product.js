@@ -19,6 +19,13 @@ class Product extends Component {
     this.setState({
       buyClicked: true
     });
+    localStorage.setItem('product', JSON.stringify(this.props.location.state.data));
+    console.log("stored in local storage")
+    //console.log(localStorage.getItem('product'))
+    //can dispatcch items to store cart items in redux
+    // set local storage and store the product details here
+    // Add to cart - setting local storage
+    //Buy- redirect to local storage
   };
 
   handleChatClick = () => {
@@ -43,18 +50,15 @@ class Product extends Component {
     // const { id } = this.props.match.params;
     const data  = this.props.location.state.data;
     console.log("^^^^^^^^^^^^^^^^^^^^^^^", data);
-    let id = this.props.match.params._id;
+    let {id} = this.props.match.params;
     console.log("()()()()()()()-----------", id)
     if (this.state.buyClicked) {
       console.log("BUYYYY CLICKEDDDD")
       return (
         <Redirect
           to={{
-            pathname: "/Product/"+id+"/CartItem/",
-            state: {
-              data: this.props.location.state.data
-            }
-          }}
+            pathname: "/Product/"+id+"/CartItem",
+           }}
         />
       );
     } else if (this.state.chatClicked) {
@@ -73,6 +77,7 @@ class Product extends Component {
       <div>
         <h1>{this.props.location.state.data.title}</h1>
         <Button onClick={this.handleBuyClick}>Buy</Button>
+        {/* make button as link */}
         <Button onClick={this.handleChatClick}>Chat</Button>
         <Button onClick={this.handleMessageClick}>Message</Button>
         {/* {data.map((product, index) => {
