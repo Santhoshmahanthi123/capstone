@@ -41,7 +41,7 @@ const medicineSchema = new mongoose.Schema({
         type : Date,
         default : Date.now
     },
-},
+ },
     {
         collection: 'medicines'
     

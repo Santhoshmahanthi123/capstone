@@ -8,7 +8,7 @@ exports.medicines_get_all = (req, res, next) => {
     .then(docs => {
         const response = {
             count : docs.length,
-            foods : docs.map(doc => {
+            medicines : docs.map(doc => {
                 return {
                     title : doc.title,
                     image : doc.image,
