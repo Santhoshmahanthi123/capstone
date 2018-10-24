@@ -29,11 +29,11 @@ class Routes extends Component{
                 {/* <Route exact path="/Food/Snacks" component = {Snacks}/> */}
                 <Route path="/Home" component = {Cards}/>
                 <Route path="/Signup" component = {Signup}/>
-                <Route path="/chat" component = {Chat}/>
+                <Route path="/Product/chat" component = {Chat}/>
                 <Route path="/ReportUs" component = {ReportUs}/>
                 <Route path="/Profile" component = {Profile}/>
                 <Route path="/Product/:id" component = {Product}/>
-                <Route path="/CartItem" component = {CartItem}/>
+                <Route path="/Product/CartItem" component = {CartItem}/>
                 {/* How to build the below product route */}
                 {/* <Route path="/category/subcategory/productid" component = {Product}/>                 */}
                 {/* <Route/> */}

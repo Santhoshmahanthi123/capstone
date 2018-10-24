@@ -41,15 +41,18 @@ class Product extends Component {
   }
   render() {
     // const { id } = this.props.match.params;
-    // const { data } = this.props.location.state.data;
-    console.log("^^^^^^^^^^^^^^^^^^^^^^^", this.props.location.state.data);
+    const data  = this.props.location.state.data;
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^", data);
+    let id = this.props.match.params._id;
+    console.log("()()()()()()()-----------", id)
     if (this.state.buyClicked) {
+      console.log("BUYYYY CLICKEDDDD")
       return (
         <Redirect
           to={{
-            pathname: "/CartItem",
+            pathname: "/Product/"+id+"/CartItem/",
             state: {
-              key: "value"
+              data: this.props.location.state.data
             }
           }}
         />
@@ -58,7 +61,7 @@ class Product extends Component {
       return (
         <Redirect
           to={{
-            pathname: "/chat",
+            pathname: "/Product/chat/",
             state: { data: this.props.location.state.data }
           }}
         />

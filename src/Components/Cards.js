@@ -7,17 +7,14 @@ import "antd/dist/antd.css";
 class Cards extends Component {
   constructor(props) {
     super(props);
-    console.log("From Cards constructor", typeof props);
+    console.log("From Cards constructor", props);
   }
-  handleClick = () => {
-    console.log("Image is clicked!");
-    //logic to redirect to the particular product page
-  };
+
   render() {
     //const { file } = this.props.file;
     console.log(this.props.data, "%%%%%%%%%%%%%%%%%%");
     let da = this.props.data;
-    console.log(typeof da, "++++++++++++++++++++");
+    console.log(da, "++++++++++++++++++++");
 
     return (
       <div style={{ background: "#ECECEC", padding: "30px" }}>
@@ -32,21 +29,16 @@ class Cards extends Component {
                         <td>
                           <Link
                             to={{
-                              pathname: "/Product/"+ product.title,
+                              pathname: "/Product/" + product._id,
                               state: { data: product }
                             }}
-                          > <img
-                          src="../1.png"
-                          style={{ width: 40, height: 40 }}
-                          // onClick={this.handleClick}
-                        /></Link>
-                          {/* <Link to={"Product/" + product.title}>
+                          >
+                            {" "}
                             <img
                               src="../1.png"
                               style={{ width: 40, height: 40 }}
-                              // onClick={this.handleClick}
                             />
-                          </Link> */}
+                          </Link>
                         </td>
                       </tr>
                       <tr>
