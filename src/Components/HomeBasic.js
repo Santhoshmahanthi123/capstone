@@ -29,7 +29,7 @@ import file from '../test.js'
 class Homebasic extends Component {
   state = {
     isClicked: false,
-    data:{}
+    data:[]
   };
 
    componentDidMount () {
@@ -48,7 +48,7 @@ class Homebasic extends Component {
    this.setState({
       data: file
     })
-   console.log("#############", typeof(this.state.data.foods))
+   console.log("#############", typeof(this.state.data))
   };
 
   handleClick = () => {
@@ -84,18 +84,9 @@ class Homebasic extends Component {
             <h3>4</h3>
           </div>
         </Carousel>
-        {/* <div>
-          <ul>
-          {this.state.data.foods.map(el => (
-            <li>
-              {el.title}: {el.price}
-            </li>
-          ))}
-        </ul>
-        </div> */}
         {/* <div style={{ background: "#ECECEC", padding: "30px" }}>
         <Row gutter={16}>
-          {d.map((product, index) => {
+          {file.map((product, index) => {
            return (
               <Col span={8}>
                 <Card title="Card title" bordered={false}>
@@ -108,13 +99,13 @@ class Homebasic extends Component {
                             style={{ width: 40, height: 40 }}
                             // onClick={this.handleClick}
                           />
-                          <Link to={"Product/" + product.id}>
-                            {product.name}
+                          <Link to={"Product/" + product.title}>
+                            {product.title}
                           </Link>
                         </td>
                       </tr>
                       <tr>
-                        <td>Price: 10</td>
+                        <td>Price: {product.price}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -124,7 +115,7 @@ class Homebasic extends Component {
           })}
           </Row>
         </div> */}
-        {/* <Cards data={this.state.data}/> */}
+        <Cards data={this.state.data}/>
       </div>
     );
   }

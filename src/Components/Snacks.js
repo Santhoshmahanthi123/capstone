@@ -10,14 +10,17 @@ class Snacks extends Component{
     constructor(props){
         super(props);
         console.log("Constructor of Snacks")
+        this.state={
+          data: []
+        }
     }
-    componentDidMount = () => {
-        Axios
+  async componentDidMount() {
+       await Axios
           .get("https://capstone-inneed.herokuapp.com/foods")
-          .then((response) => {
-            console.log(response);
+          .then ((response) => {
+            console.log(response,"(_____))))((((");
             this.setState({
-              data: response
+              data: response.data
             })
           })
           .catch((error)=> {
@@ -30,20 +33,22 @@ class Snacks extends Component{
       };
     render() {
        // const { data } = this.props.data;
-       // console.log(data, "%%%%%%%%%%%%%%%%%%");
+        console.log(this.state.data, "%%%%%%%%%%%%%%%%%%");
         return (
           <div style={{ background: "#ECECEC", padding: "30px" }}>
-          {/* <Row gutter={16}>
-            {data.map((product, index) => {
-             return (
-                <Col span={8} key={index}>
-                  <Card title={product.name} bordered={false}>
+            
+            {/* {this.state.data.map((product, index) => { */}
+
+             {/* return ( */}
+              <Row gutter={16}>
+                <Col span={8} >
+                  <Card title={this.state.data.title} bordered={false}>
                     <table>
                       <tbody>
                         <tr>
                           <td>
                            
-                            <Link to={"Product/" + product.id}>
+                            <Link to={"Product/" + this.state.data.id}>
                             <img
                               src="../1.png"
                               style={{ width: 40, height: 40 }}
@@ -53,18 +58,38 @@ class Snacks extends Component{
                           </td>
                         </tr>
                         <tr>
-                          <td>Price: {product.price}</td>
+                          <td>Price: {this.state.data.price}</td>
                         </tr>
                       </tbody>
                     </table>
                   </Card>
                 </Col>
-              )
-            })}
-            </Row> */}
+                </Row>
+              {/* ) */}
+            {/* })} */}
+           
           
         </div>
         );
       }
 }
 export default Snacks;
+
+// file.contacts.forEach((user) => {
+//               console.log(user.email+"*********************")
+//               console.log(username+"&&&&&&&&&&&&&&&&&&")
+//               if(username ===user.email){
+//                   //try to use indexOf
+//                   if(password === user.password){
+//                       console.log(user)
+//                       return resolve(user)
+//                   }
+//                   else{
+//                       return reject(new Error("Invalid password"))
+//                   }
+//               }
+//               else{// check with flags
+//                  flag= true
+//               }
+             
+//           })

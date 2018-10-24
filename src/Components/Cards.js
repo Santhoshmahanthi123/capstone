@@ -7,28 +7,31 @@ import "antd/dist/antd.css";
 class Cards extends Component {
   constructor(props){
     super(props);
-    console.log("From Cards constructor", props)
+    console.log("From Cards constructor", typeof(props))
   }
   handleClick = () =>{
     console.log("Image is clicked!")
     //logic to redirect to the particular product page
   }
   render() {
-    const { data } = this.props.data;
-    console.log(data, "%%%%%%%%%%%%%%%%%%");
+    //const { file } = this.props.file;
+    console.log(this.props.data, "%%%%%%%%%%%%%%%%%%");
+    let da = this.props.data;    
+    console.log(typeof(da), "++++++++++++++++++++");
+
     return (
       <div style={{ background: "#ECECEC", padding: "30px" }}>
       <Row gutter={16}>
-        {data.map((product, index) => {
+        {da.map((product, index) => {
          return (
             <Col span={8} key={index}>
-              <Card title={product.name} bordered={false}>
+              <Card title={product.title} bordered={false}>
                 <table>
                   <tbody>
                     <tr>
                       <td>
                        
-                        <Link to={"Product/" + product.id}>
+                        <Link to={"Product/" + product.title}>
                         <img
                           src="../1.png"
                           style={{ width: 40, height: 40 }}

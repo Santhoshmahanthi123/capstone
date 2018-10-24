@@ -1,45 +1,54 @@
 import React, { Component } from "react";
 // import { fakeData } from "./HomeBasic";
-import {Redirect} from 'react-router-dom'
-import {Button} from 'react-bootstrap'
-
+import { Redirect } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import file from '../test'
 class Product extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    console.log("Product constructor ", props)
+    this.state = {
       buyClicked: false,
       chatClicked: false
-    }
+    };
   }
-  
-  handleClick= () =>{
+
+  handleClick = () => {
     //Redirect to Cart page
     this.setState({
       buyClicked: true
-    })
+    });
+  };
 
-  }
-
-  handleChatClick = ()=>{
+  handleChatClick = () => {
     this.setState({
       chatClicked: true
-    })
-
-  }
+    });
+  };
   render() {
     const { id } = this.props.match.params;
     const { data } = this.props.data;
-    if(this.state.buyClicked){
-      return <Redirect to ={{pathname:"/CartItem",
-      state:{
-        key:"value"
-      }}}/>
+    if (this.state.buyClicked) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/CartItem",
+            state: {
+              key: "value"
+            }
+          }}
+        />
+      );
+    } else if (this.state.chatClicked) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/chat"
+          }}
+        />
+      );
     }
-    else if(this.state.chatClicked){
-      return <Redirect to ={{pathname:"/chat",
-      }}/>
-    }
-   
+
     //console.log(id);
     return (
       <div>
@@ -51,7 +60,6 @@ class Product extends Component {
                 <Button onClick={this.handleClick}>Buy</Button>
                 <Button onClick={this.handleChatClick}>Chat</Button>
                 <Button onClick={this.handleMessageClick}>Message</Button>
-
               </div>
             );
           }
