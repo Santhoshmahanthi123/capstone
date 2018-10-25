@@ -56,5 +56,4 @@ router.delete('/:medicineId',checkAuth,MedicinesController.medicines_delete_medi
 
 
 
-
 module.exports = router;

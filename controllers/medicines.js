@@ -7,26 +7,26 @@ exports.medicines_get_all = (req, res, next) => {
     .populate('user')
     .exec()
     .then(docs => {
-        // const response = {
-        //     count : docs.length,
-        //     medicines : docs.map(doc => {
-        //         return {
-        //             title : doc.title,
-        //             image : 'https://capstone-inneed.herokuapp.com/public/uploads/'+doc.image,
-        //             price : doc.price,
-        //             _id   : doc._id,
-        //             quantity : doc.quantity,
-        //             description : doc.description, 
-                
+        const response = {
+            count : docs.length,
+            medicines : docs.map(doc => {
+                return {
+                    title : doc.title,
+                    image : 'https://capstone-inneed.herokuapp.com/public/uploads/'+doc.image,
+                    price : doc.price,
+                    _id   : doc._id,
+                    quantity : doc.quantity,
+                    description : doc.description, 
+                    user : doc.user,
                 // request : {
                 //     type : 'GET',
                 //     url : 'https://capstone-inneed.herokuapp.com/medicines/' + doc._id
 
                 //      }
-        //         };
-        //     })
-        // };
-        res.status(200).json(docs);
+                };
+            })
+        };
+        res.status(200).json(response);
     })
 
     .catch(err => {
@@ -99,31 +99,6 @@ exports.medicines_get_medicine = (req, res, next) => {
             });
     });
 }
-
-// exports.foods_update_food = (req, res, next) => {
-//     const id = req.params.foodId;
-//     const updateOps = {};
-//     for(const ops of req.body) {
-//       updateOps[ops.propName] = ops.value;
-//     }
-//     Food.update({ _id: id }, { $set: updateOps })
-//       .exec()
-//       .then(result => {
-//         res.status(200).json({
-//           message: "Food updated",
-//           request: {
-//             type: "GET",
-//             url: "http://localhost:3030/foods/" + id
-//           }
-//         });
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json({
-//           error: err
-//         });
-//       });
-//   };
  
 
 exports.medicines_delete_medicine = (req, res, next) => {
