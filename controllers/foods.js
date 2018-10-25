@@ -44,7 +44,7 @@ exports.foods_create_food = (req, res, next) => {
  
     const food = new Food ({
         title : req.body.title,
-        price : req.body.price,  // You are creating new food
+        price : req.body.price,  
         quantity : req.body.quantity,
         description : req.body.description,
         user: req.body.user,

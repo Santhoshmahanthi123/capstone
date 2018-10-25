@@ -55,7 +55,7 @@ exports.user_signup = (req,res,next) => {
 }
 
 exports.user_login = (req,res,next) =>{
-    User.find({ email : req.body.email})
+    User.find({ name : req.body.name})
     .exec()
     .then(user =>{
         if(user.length < 1){
@@ -71,7 +71,7 @@ exports.user_login = (req,res,next) =>{
             }
             if(result){
                 const token = jwt.sign({
-                    email : user[0].email,
+                    name : user[0].name,
                     userId : user[0]._id
                 },
                 process.env.JWTKEY,
