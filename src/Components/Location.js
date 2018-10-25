@@ -21,6 +21,7 @@ export class MapContainer extends React.Component {
           response => {
             const address = response.results[0].formatted_address;
             console.log(response.results[0],"**********ADDRESS**********");
+            console.log(response.results[0].short_name,"**********ADDRESS**********");
             this.setState({
               address: address
             })

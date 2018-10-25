@@ -18,7 +18,8 @@ const Option = Select.Option;
 class RegistrationForm extends Component {
   state = {
     confirmDirty: false,
-    autoCompleteResult: []
+    autoCompleteResult: [],
+    isValid: false
   };
 
   handleSubmit = e => {
@@ -28,6 +29,9 @@ class RegistrationForm extends Component {
         console.log("Received values of form: ", values);
         let { name,email, password, mobile, address, pincode  } = this.state;
         this.props.signupFn(name,email, password, mobile, address, pincode);
+        this.setState({
+          isValid: true
+        })
       }
     });
   };
@@ -55,7 +59,7 @@ class RegistrationForm extends Component {
   };
 
   render() {
-    if(isSignupSuccess){
+    if(this.state.isValid){
       return(
          <Redirect to={{
                        pathname: '/Profile',

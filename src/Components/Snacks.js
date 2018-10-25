@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Card, Col, Row } from "antd";
 // import {Switch, Route} from 'react-router-dom';
-// import Cards from './Cards';
+import Cards from './Cards';
 import Axios from 'axios'
 import {Link} from 'react-router-dom'
 //import file from '../test.json'
@@ -20,16 +20,13 @@ class Snacks extends Component{
           .then ((response) => {
             console.log(response,"(_____))))((((");
             this.setState({
-              data: response.data
+              data: response.data.foods
             })
           })
           .catch((error)=> {
-            console.log(error);
+            console.log("This is error:",error);
           });
-        // console.log(file, "$$$$$$$$$$$$$$$$$$$$")
-        // this.setState({
-        //   data: file
-        // })
+        
       };
     render() {
        // const { data } = this.props.data;
@@ -40,7 +37,7 @@ class Snacks extends Component{
             {/* {this.state.data.map((product, index) => { */}
 
              {/* return ( */}
-              <Row gutter={16}>
+              {/* <Row gutter={16}>
                 <Col span={8} >
                   <Card title={this.state.data.title} bordered={false}>
                     <table>
@@ -64,10 +61,10 @@ class Snacks extends Component{
                     </table>
                   </Card>
                 </Col>
-                </Row>
+                </Row> */}
               {/* ) */}
             {/* })} */}
-           
+           <Cards data={this.state.data}/>
           
         </div>
         );

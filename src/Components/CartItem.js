@@ -34,37 +34,39 @@ class CartItem extends Component {
     console.log(d, "RENEDERRRRRR");
     let amount = d.price * this.state.finalQuantity;
     return (
-      <div>
-        <table>
-          <th>Cart Summary</th>
-          <tbody>
+      <div style={{ margin:'auto',backgroundColor:'#0f293a', borderRadius: 6, color:'white'}}>
+        <table style={{margin: 'auto', fontFamily:'Verdana'}}>
+          <th style={{fontSize:40, textAlign:'center'}}>Cart Summary</th>
+          <tbody style={{ marginLeft: 'auto',fontSize:20 }}>
             <tr>
-              <td>Name</td>
-              <td>{d.title}</td>
+              <td  style={{textAlign:'left'}}>Name</td>
+              <td  style={{textAlign:'right'}}>{d.title}</td>
             </tr>
             <tr>
-              <td>Price(INR)</td>
-              <td>{d.price}</td>
+              <td  style={{textAlign:'left'}}>Price(INR)</td>
+              <td style={{textAlign:'right'}}>{d.price}</td>
             </tr>
             <tr>
-              <td>Available Quantity</td>
-              <td>{d.quantity}</td>
+              <td  style={{textAlign:'left'}}>Available Quantity</td>
+              <td style={{textAlign:'right'}}>{d.quantity}</td>
             </tr>
-            <tr>
-              <input
+            <tr  >
+                <td style={{textAlign:'left'}}>Select Quantity</td>
+            <td style={{textAlign:'right', color:'black'}}> <input
                 type="number"
                 min={1}
                 max={d.quantity}
+                defaultValue={1}
                 onChange={this.handleChange}
-              />
+              /></td> 
             </tr>
             <tr>
-              <td>Total Price to be paid:</td>
-              <td>{amount}</td>
+              <td  style={{textAlign:'left'}}>Total Price to be paid (INR):</td>
+              <td style={{textAlign:'right'}}>{amount}</td>
             </tr>
             <tr style={{ marginLeft: 200 }}>
-              <td>
-                <Button>
+              <td style={{padding:20}}>
+                <Button style={{fontSize:20, color:'black'}}>
                   <Link
                     to={{
                       pathname: "/product/" + d._id + "/payment"

@@ -12,7 +12,7 @@ class NormalLoginForm extends Component {
     super(props);
     //console.log("%%%%%%%%%%%%%%5", props)
     this.state = {};
-    this.state.nextPage = this.props.nextPage;
+    this.state.nextPage = false;
   }
   handleSubmit = e => {
     e.preventDefault();
@@ -20,7 +20,10 @@ class NormalLoginForm extends Component {
       if (!err) {
         console.log("Received values of form: ", values);
         let { username, password } = this.state;
-    this.props.login(username, password);
+         this.props.login(username, password);
+          this.setState({
+            nextPage: true
+          })
       }
     });
     
@@ -30,7 +33,7 @@ class NormalLoginForm extends Component {
     //let { username, password } = this.state;
     let { isLoginPending, isLoginSuccess, loginError, user } = this.props;
     // console.log(user+"  Local user")
-    if (this.props.nextPage) {
+    if (this.state.nextPage) {
       return (
         <Redirect
           to={{

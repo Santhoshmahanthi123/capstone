@@ -8,7 +8,8 @@ import Cards from "./Cards";
 import Spinner from 'react-spinkit'
 import { connect } from "react-redux";
 import { displayProduct } from "../Redux/Reducers/ProductReducer";
-import './ImageSlider.css'
+import './ImageSlider.css';
+// import './homeBasic.css';
 // import file from '../test.js'
 
 class Homebasic extends Component {
@@ -18,18 +19,7 @@ class Homebasic extends Component {
   };
 
   componentDidMount() {
-    // Axios
-    //   .get("https://capstone-inneed.herokuapp.com/foods")
-    //   .then((response) => {
-    //     console.log(response,"$$$$$$$$@@@@");
-    //     console.log(response.data.foods,"!!!!!!!!!!!!!!!!");
-    //     this.setState({
-    //       data: response.data.foods
-    //     })
-    //   })
-    //   .catch((error)=> {
-    //     console.log(error);
-    //   });
+   
     this.props.displayProduct();
   }
 
@@ -49,8 +39,8 @@ class Homebasic extends Component {
     let { isProductPending, productShow, productError, prodData } = this.props;
     // console.log("PRODDDDDDDDATATATAAA", prodData)
     return (
-      <div>
-        <Carousel autoplay>
+      <div  >
+        <Carousel className="Carousel" autoplay >
           <div>
           <img src="../food1.jpg"/>
           </div>

@@ -65,7 +65,7 @@ class Home extends Component {
               key="sub2"
               title={
                 <span>
-                  <Icon type="team" />
+                  <Icon type="disconnect" />
                   <span>Medicine</span>
                 </span>
               }
@@ -79,7 +79,7 @@ class Home extends Component {
             > */}
             <Menu.Item key="7">
               {" "}
-              <Icon type="file" />
+              <Icon type="shop" />
               <span><Link to="">Misc</Link></span>
             </Menu.Item>
             {/* <Menu.Item key="8">Bill</Menu.Item>
@@ -90,7 +90,7 @@ class Home extends Component {
               <span><Link to="/ReportUs">Report Us</Link></span>
             </Menu.Item>
             <Menu.Item key="11">
-              <Icon type="home" />
+              <Icon type="user" />
               <span>
                 <Link to="/Login">Login</Link>
               </span>
@@ -102,7 +102,7 @@ class Home extends Component {
               </span>
             </Menu.Item> */}
             <Menu.Item key="13">
-              <Icon type="home" />
+              <Icon type="usergroup-add" />
               <span>
                 <Link to="/Signup">Signup</Link>
               </span>
