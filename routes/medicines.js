@@ -43,7 +43,7 @@ const upload = multer({
 
 router.get('/',MedicinesController.medicines_get_all);
 
-router.post('/',checkAuth, upload.single('image'), MedicinesController.medicines_create_medicine);
+router.post('/',upload.single('image'), MedicinesController.medicines_create_medicine);
 
 router.get('/:medicineId',checkAuth,MedicinesController.medicines_get_medicine);
 

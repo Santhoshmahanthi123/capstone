@@ -1,31 +1,34 @@
 const mongoose = require('mongoose');
 const Food = require('../models/food');
+const User = require('../models/user');
 
 exports.foods_get_all = (req, res, next) => {
     Food.find()
     .select('image title price description quantity')
+    .populate('user')
     .exec()
     .then(docs => {
-        const response = {
-            count : docs.length,
-            foods : docs.map(doc => {
-                return {
-                    title : doc.title,
-                    image : 'https://capstone-inneed.herokuapp.com/public/uploads/'+doc.image,
-                    price : doc.price,
-                    _id   : doc._id,
-                    quantity : doc.quantity,
-                    description : doc.description, 
+        // const response = {
+        //     count : docs.length,
+        //     foods : docs.map(doc => {
+        //         return {
+        //             user: doc.user,
+        //             title : doc.title,
+        //             image : 'https://capstone-inneed.herokuapp.com/public/uploads/'+doc.image,
+        //             price : doc.price,
+        //             _id   : doc._id,
+        //             quantity : doc.quantity,
+        //             description : doc.description,
                 
-                // request : {
-                //     type : 'GET',
-                //     url : 'https://capstone-inneed.herokuapp.com/foods' + doc._id
+        //         // request : {
+        //         //     type : 'GET',
+        //         //     url : 'https://capstone-inneed.herokuapp.com/foods' + doc._id
 
-                //      }
-                };
-            })
-        };
-        res.status(200).json(response);
+        //         //      }
+        //         };
+        //     })
+        // };
+        res.status(200).json(docs);
     })
 
     .catch(err => {
@@ -38,14 +41,17 @@ exports.foods_get_all = (req, res, next) => {
 
 
 exports.foods_create_food = (req, res, next) => {
+    console.log("****************",req.newFileName);
     const food = new Food ({
         title : req.body.title,
-        price : req.body.price,
+        price : req.body.price,  // You are creating new food
         quantity : req.body.quantity,
         description : req.body.description,
+        user: req.body.user,
         image : req.newFileName,
         _id : new mongoose.Types.ObjectId(),
      });
+    
     food
     .save()
     .then(result => {

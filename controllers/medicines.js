@@ -1,31 +1,32 @@
 const mongoose = require('mongoose');
 const Medicine = require('../models/medicine');
-
+const User = require('../models/user');
 exports.medicines_get_all = (req, res, next) => {
     Medicine.find()
     .select('image title price description quantity')
+    .populate('user')
     .exec()
     .then(docs => {
-        const response = {
-            count : docs.length,
-            medicines : docs.map(doc => {
-                return {
-                    title : doc.title,
-                    image : 'https://capstone-inneed.herokuapp.com/public/uploads/'+doc.image,
-                    price : doc.price,
-                    _id   : doc._id,
-                    quantity : doc.quantity,
-                    description : doc.description, 
+        // const response = {
+        //     count : docs.length,
+        //     medicines : docs.map(doc => {
+        //         return {
+        //             title : doc.title,
+        //             image : 'https://capstone-inneed.herokuapp.com/public/uploads/'+doc.image,
+        //             price : doc.price,
+        //             _id   : doc._id,
+        //             quantity : doc.quantity,
+        //             description : doc.description, 
                 
                 // request : {
                 //     type : 'GET',
                 //     url : 'https://capstone-inneed.herokuapp.com/medicines/' + doc._id
 
                 //      }
-                };
-            })
-        };
-        res.status(200).json(response);
+        //         };
+        //     })
+        // };
+        res.status(200).json(docs);
     })
 
     .catch(err => {
@@ -44,6 +45,7 @@ exports.medicines_create_medicine = (req, res, next) => {
         price : req.body.price,
         quantity : req.body.quantity,
         description : req.body.description,
+        user: req.body.user,
         image : req.newFileName,
         _id : new mongoose.Types.ObjectId(),
      });

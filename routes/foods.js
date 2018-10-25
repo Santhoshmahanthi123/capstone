@@ -38,11 +38,11 @@ const storage = multer.diskStorage({
 
 //...............Food Routes.............
 //router.get('/search',FoodsController.search)
-router.get('/',checkAuth,FoodsController.foods_get_all);
+router.get('/',FoodsController.foods_get_all);
 
-router.post('/',checkAuth, upload.single('image'),FoodsController.foods_create_food);
+router.post('/',upload.single('image'),FoodsController.foods_create_food);
 
-router.get('/:foodId',checkAuth,FoodsController.foods_get_food);
+router.get('/:foodId',FoodsController.foods_get_food);
 
 // router.patch('/:foodId',FoodsController.foods_update_food);
 

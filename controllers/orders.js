@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
  exports.orders_get_all = (req,res,next)=>{
     Order.find()
-    .select('food name quantity _id')
+    .select('food quantity _id')
     .populate('food','title')
     .exec()
     .then(docs => {
@@ -68,7 +68,7 @@ const mongoose = require('mongoose');
 exports.orders_get_order = (req,res,next)=>{
     Order.findById(req.params.orderId)
     .populate('food')
-    .select('quantity _id food')
+    .select('quantity _id')
     .exec()
     .then(order =>{
         if(!order){
