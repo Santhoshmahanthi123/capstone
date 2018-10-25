@@ -55,7 +55,7 @@ exports.user_signup = (req,res,next) => {
 }
 
 exports.user_login = (req,res,next) =>{
-    User.find({ name : req.body.name})
+    User.find({ name:req.body.name})
     .exec()
     .then(user =>{
         if(user.length < 1){
