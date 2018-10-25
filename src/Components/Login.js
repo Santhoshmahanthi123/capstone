@@ -32,8 +32,10 @@ class NormalLoginForm extends Component {
   render() {
     //let { username, password } = this.state;
     let { isLoginPending, isLoginSuccess, loginError, user } = this.props;
-    // console.log(user+"  Local user")
+     console.log(user+"  Local user")
     if (this.state.nextPage) {
+      localStorage.setItem('user', user )
+      console.log("LOCAL STORAGE", localStorage.getItem('user'))
       return (
         <Redirect
           to={{

@@ -43,7 +43,7 @@ class CartItem extends Component {
               <td  style={{textAlign:'right'}}>{d.title}</td>
             </tr>
             <tr>
-              <td  style={{textAlign:'left'}}>Price(INR)</td>
+              <td  style={{textAlign:'left'}}>Price &#8377;</td>
               <td style={{textAlign:'right'}}>{d.price}</td>
             </tr>
             <tr>
@@ -61,7 +61,7 @@ class CartItem extends Component {
               /></td> 
             </tr>
             <tr>
-              <td  style={{textAlign:'left'}}>Total Price to be paid (INR):</td>
+              <td  style={{textAlign:'left'}}>Total Price to be paid &#8377;:</td>
               <td style={{textAlign:'right'}}>{amount}</td>
             </tr>
             <tr style={{ marginLeft: 200 }}>

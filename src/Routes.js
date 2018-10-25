@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, withRouter} from 'react-router-dom';
 // import Home from './Components/Home';
 import Login from './Components/Login';
 import PostAd from './Containers/PostAd';
@@ -15,6 +15,8 @@ import PageNotFound from './Components/PageNotFound'
 import CartItem from './Components/CartItem';
 import Profile from './Components/Profile';
 import Payment from './Components/Payment';
+import PrivateRoute from './Containers/privateRoutes';
+import { connect } from 'react-redux';
 
 class Routes extends Component{
     render(){
@@ -25,17 +27,17 @@ class Routes extends Component{
                 <Route path="/Home" component= {Homebasic}/>
                 <Route exact path="/login" component = {Login}/>
                 <Route path="/Signup" component = {Signup}/>
-                <Route exact path="/postAd" component = {PostAd}/>
+                <PrivateRoute exact path="/postAd" component = {PostAd} currentUser={this.props.user}/>
                 <Route exact path="/foods" component = {Snacks}/>
                 {/* <Route exact path="/Food/Snacks" component = {Snacks}/> */}
                 <Route path="/Home" component = {Cards}/>
                 <Route path="/Signup" component = {Signup}/>
                 <Route path="/Product/chat" component = {Chat}/>
                 <Route path="/ReportUs" component = {ReportUs}/>
-                <Route path="/Profile" component = {Profile}/>
+                <PrivateRoute path="/Profile" component = {Profile} currentUser={this.props.user}/>
                 <Route exact path="/Product/:id" component = {Product}/>
-                <Route exact path="/Product/:id/CartItem" component = {CartItem}/>
-                <Route exact path="/product/:id/payment" component = {Payment}/>
+                <PrivateRoute exact path="/Product/:id/CartItem" component = {CartItem}/>
+                <PrivateRoute exact path="/product/:id/payment" component = {Payment}/>
                 {/* How to build the below product route */}
                 {/* <Route path="/category/subcategory/productid" component = {Product}/>                 */}
                 {/* <Route/> */}
@@ -46,4 +48,13 @@ class Routes extends Component{
         )
     }
 }
-export default Routes;
+
+const mapStateToProps= (state) =>{
+    return {
+      isLoginSuccess: state.loginFn.isLoginSuccess,
+      user: state.loginFn.user,
+     }
+  }
+  export default withRouter(
+    connect(mapStateToProps)(Routes)
+  );

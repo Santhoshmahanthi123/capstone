@@ -89,7 +89,7 @@ class PostAd extends Component {
           </FormItem>
         <FormItem
           {...formItemLayout}
-          label="Price (INR)"
+          label="Price &#8377;"
         >
           {getFieldDecorator('price', {
             rules: [{ required: true, message: 'Please product Price!', whitespace: true }],
@@ -116,11 +116,8 @@ class PostAd extends Component {
             valuePropName: 'fileList',
             getValueFromEvent: this.normFile,
           })(
-            <Upload name="logo" action="/upload.do" listType="picture">
-              <Button>
-                <Icon type="upload" /> Click to upload
-              </Button>
-            </Upload>
+            <input type="file"
+            label="Upload an Image" />
           )}
         </FormItem>
 
