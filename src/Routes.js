@@ -20,6 +20,7 @@ import { connect } from 'react-redux';
 
 class Routes extends Component{
     render(){
+        console.log("%%%%%%%%%%%%$%%%%%%%####@@@@", this.props.user)
         return(
             <Switch>
                 {/* <ImageSlider />
@@ -27,7 +28,7 @@ class Routes extends Component{
                 <Route path="/Home" component= {Homebasic}/>
                 <Route exact path="/login" component = {Login}/>
                 <Route path="/Signup" component = {Signup}/>
-                <PrivateRoute exact path="/postAd" component = {PostAd} currentUser={this.props.user}/>
+                <Route exact path="/postAd" component = {PostAd} />
                 <Route exact path="/foods" component = {Snacks}/>
                 {/* <Route exact path="/Food/Snacks" component = {Snacks}/> */}
                 <Route path="/Home" component = {Cards}/>
@@ -36,8 +37,8 @@ class Routes extends Component{
                 <Route path="/ReportUs" component = {ReportUs}/>
                 <PrivateRoute path="/Profile" component = {Profile} currentUser={this.props.user}/>
                 <Route exact path="/Product/:id" component = {Product}/>
-                <PrivateRoute exact path="/Product/:id/CartItem" component = {CartItem}/>
-                <PrivateRoute exact path="/product/:id/payment" component = {Payment}/>
+                <PrivateRoute exact path="/Product/:id/CartItem" component = {CartItem} currentUser={this.props.user}/>
+                <PrivateRoute exact path="/product/:id/payment" component = {Payment} currentUser={this.props.user}/>
                 {/* How to build the below product route */}
                 {/* <Route path="/category/subcategory/productid" component = {Product}/>                 */}
                 {/* <Route/> */}
@@ -50,6 +51,7 @@ class Routes extends Component{
 }
 
 const mapStateToProps= (state) =>{
+    console.log("*************", state)
     return {
       isLoginSuccess: state.loginFn.isLoginSuccess,
       user: state.loginFn.user,

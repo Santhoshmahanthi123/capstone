@@ -12,6 +12,7 @@ function setLoginPending(isLoginPending) {
 }
 
 function setLoginSuccess(isLoginSuccess, userData) {
+  console.log("I AM DISPATCHING!!!!!!!!!!!")
   return {
     type: LOGIN_SUCCESS,
     isLoginSuccess,

@@ -48,9 +48,9 @@ export function displayProduct() {
       .get("https://capstone-inneed.herokuapp.com/medicines")
       .then((response) => {
         console.log(response,"$$$$$$$$@@@@");
-        console.log(response.data,"!!!!!!!!!!!!!!!!");
+        console.log(response.data.medicines,"!!!!!!!!!!!!!!!!");
         dispatch(setProductPending(false));
-        dispatch(setProductShow(true, response.data));
+        dispatch(setProductShow(true, response.data.medicines));
         // this.setState({
         //   data: response.data.foods
         // })

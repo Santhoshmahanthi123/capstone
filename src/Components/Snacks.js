@@ -20,7 +20,7 @@ class Snacks extends Component{
           .then ((response) => {
             console.log(response,"(_____))))((((");
             this.setState({
-              data: response.data
+              data: response.data.foods
             })
           })
           .catch((error)=> {

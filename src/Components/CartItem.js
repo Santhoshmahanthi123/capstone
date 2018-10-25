@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Cards from "./Cards";
+import Timer from "./timer";
 import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
+
 class CartItem extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +20,9 @@ class CartItem extends Component {
     this.setState({
       data: localStorage.getItem("product")
     });
+    // setTimeout({
+
+    // })
     // console.log("LOCAL STORAGE", localStorage.getItem('product'))
     // console.log(this.state.data, "DATATATAATATATATATAT")
   }
@@ -35,6 +39,7 @@ class CartItem extends Component {
     let amount = d.price * this.state.finalQuantity;
     return (
       <div style={{ margin:'auto',backgroundColor:'#0f293a', borderRadius: 6, color:'white'}}>
+      <div style={{border:'2 solid white', fontSize: 30}}><Timer/></div>
         <table style={{margin: 'auto', fontFamily:'Verdana'}}>
           <th style={{fontSize:40, textAlign:'center'}}>Cart Summary</th>
           <tbody style={{ marginLeft: 'auto',fontSize:20 }}>

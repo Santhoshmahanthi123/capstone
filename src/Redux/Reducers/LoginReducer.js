@@ -1,7 +1,7 @@
 // import Promise from "es6-promise";
 //import file from "../file.json";
 import Axios from "axios";
-
+import jwt_decode from 'jwt-decode'
 import { setLoginSuccess, setLoginPending, setLoginError } from '../Actions/LoginAction'
 const LOGIN_PENDING = "LOGIN_PENDING";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -61,17 +61,20 @@ export function login(username, password) {
     //login should be a post request and not a get request
     Axios({
       url: 'https://capstone-inneed.herokuapp.com/user/login',
-      method: "get",
+      method: "post",
       //headers: {'Content-Type': 'application/json'},
       data: {
-        username: username,
+        name: username,
         password: password
       }
     })
       .then(userData => {
-        console.log("USER DATA", userData);
+        console.log("USER DATA", userData.data.token);
+        var token= userData.data.token
+        var decoded = jwt_decode(token);
+        console.log("DECODEDDDDDDDDDDDDDDDD",decoded);
         dispatch(setLoginPending(false));
-        dispatch(setLoginSuccess(true, userData));
+        dispatch(setLoginSuccess(true, decoded));
       })
       .catch(err => {
         dispatch(setLoginPending(false));

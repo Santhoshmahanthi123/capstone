@@ -54,8 +54,8 @@ class Cards extends Component {
                             <img
                               src={product.image}
                               style={{
-                                width: 40,
-                                height: 40,
+                                width: 70,
+                                height: 70,
                                 marginBottom: 20
                               }}
                             />

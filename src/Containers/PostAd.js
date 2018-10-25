@@ -31,6 +31,7 @@ class PostAd extends Component {
   normFile = (e) => {
     console.log('Upload event:', e);
     if (Array.isArray(e)) {
+      console.log(e)
       return e;
     }
     return e && e.fileList;
