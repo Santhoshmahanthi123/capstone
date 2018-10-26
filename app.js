@@ -1,10 +1,12 @@
 require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
 const app = express();
 const morgan = require('morgan');
 const path = require('path');
+const nodemailer = require('nodemailer');
+const xoauth2 = require('xoauth2');
 app.use(cors());
 const foodRoutes = require('./routes/foods');
 const userRoutes = require('./routes/user');
@@ -49,8 +51,8 @@ app.get('/twilio',(req,res)=>{
   client.messages
   .create({
        from :'+15129576906',
-       body : 'Hey Raghu, Nikhita has ordered your product. Please contact as soon as possible to 7986562937 number!',
-       to: '+918332895582'
+       body : 'Hey someone has ordered your product in InNeed.!',
+       to: '+918332895582',
      })
      .then(message => res.json({'message':'Twilio is working successfully!'}))
      .catch((err) => {res.json(err)})
@@ -64,6 +66,41 @@ app.use('/orders',orderRoutes);
 app.use('/medicines',medicineRoutes);
 
 app.use('/public/uploads', express.static(path.join(__dirname, 'public/uploads')));
+
+
+//mail code start 
+// const transporter = nodemailer.createTransport({
+//     service : 'gmail',
+//     auth: {
+//         type: 'OAuth2',
+//             user: 'vadlakonda.raghu5@gmail.com',
+//             clientId: '656338103307-q3bfioqqcls46q2epjsus4ora24js194.apps.googleusercontent.com',
+//             clientSecret: 'g9kS8aUEyEXk2Cs7uXDIeHxL',
+//             refreshToken: '1/oH3w-MQMElpTQXIhjGA2yloSKh7psSPaYd07s1fIpnk',
+//             accessToken: 'ya29.GltBBo437FrfyYz9_jgXqDlYIeSv28M4dX3TtF5shmAS3zxGuJiK2vRQWaixv1AQWAO1RKPKlwtHRKJ1u2z6s5ODRryJdyKG3L60oKer0SkrjEsdlaw7_sD-ySlH'
+ 
+ 
+//     }
+//  })
+ 
+//  app.get('/mail',(req,res)=>{})
+//  const mailOptions = {
+//     from : 'Raghunath <vadlakonda.raghu5@gmail.com>',
+//     to: 'singumahanthisanthosh@gmail.com',
+//     subject : 'This mail from InNeed',
+//     text: 'Hi, This from InNeed Thank You for your vauable Feedback!'
+//  }
+ 
+//  transporter.sendMail(mailOptions,(err, res)=>{
+//     if(err) {
+//         console.log('Error');
+//     }
+//     else {
+//         console.log('Email sent');
+//     }
+//  });
+
+ //ends mail code
 
 app.use((req,res,next)=>{
     const error = new Error('Not found!');
