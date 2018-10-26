@@ -9,8 +9,7 @@ import Spinner from 'react-spinkit'
 import { connect } from "react-redux";
 import { displayProduct } from "../Redux/Reducers/ProductReducer";
 import './ImageSlider.css';
-// import './homeBasic.css';
-// import file from '../test.js'
+
 
 class Homebasic extends Component {
   state = {
@@ -86,7 +85,8 @@ class Homebasic extends Component {
           </Row>
         </div> */}
 
-        {isProductPending && <Spinner name="pacman" color="blue"/>
+        {isProductPending && <Spinner name="pacman" color="blue" style={{ display: 'flex',
+    alignItems: 'center',justifContent: 'center'}}/>
       
         }
         {productShow && <Cards data={prodData}/>}

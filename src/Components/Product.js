@@ -83,7 +83,7 @@ class Product extends Component {
         <Card bordered={true}
         headStyle={{color:'white'}}
           hoverable
-          style={{ width: 200, }}
+          style={{ width: 'auto', }}
           cover={
             <img
               alt="example"
@@ -91,7 +91,7 @@ class Product extends Component {
             
             />
           }
-          style={{textAlign: 'center', } }
+          // style={{textAlign: 'center', } }
         >
           <Meta title={this.props.location.state.data.title} description={this.props.location.state.data.description} />
         </Card>

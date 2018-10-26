@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Redirect, withRouter } from 'react-router-dom'
-// import './Login.css'
-import { connect } from 'react-redux'
-import { login } from '../Redux/Reducers/LoginReducer';
+import { Redirect, withRouter } from "react-router-dom";
+import Spinner from "react-spinkit";
+import { connect } from "react-redux";
+import { login } from "../Redux/Reducers/LoginReducer";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 
 const FormItem = Form.Item;
@@ -20,26 +20,25 @@ class NormalLoginForm extends Component {
       if (!err) {
         console.log("Received values of form: ", values);
         let { username, password } = this.state;
-         this.props.login(username, password);
-          this.setState({
-            nextPage: true
-          })
+        this.props.login(username, password);
+        this.setState({
+          nextPage: true
+        });
       }
     });
-    
   };
 
   render() {
     //let { username, password } = this.state;
     let { isLoginPending, isLoginSuccess, loginError, user } = this.props;
-     console.log(user+"  Local user")
+    console.log(user + "  Local user");
     if (isLoginSuccess) {
-      localStorage.setItem('user', JSON.stringify(user) )
-      console.log("LOCAL STORAGE", localStorage.getItem('user'))
+      localStorage.setItem("user", JSON.stringify(user));
+      console.log("LOCAL STORAGE", localStorage.getItem("user"));
       return (
         <Redirect
           to={{
-            pathname: "/Profile", 
+            pathname: "/Profile"
           }}
           push
         />
@@ -88,32 +87,45 @@ class NormalLoginForm extends Component {
           </Button>
           &nbsp; Or <a href="">register now!</a>
         </FormItem>
-        {isLoginPending && <div>Please wait..</div>}
+        {isLoginPending && (
+          <Spinner
+            name="wave"
+            color="blue"
+            // style={{
+            //   display: "flex",
+            //   alignItems: "center",
+            //   justifContent: "center"
+            // }}
+            style={{margin: 'auto'}}
+          />
+        )}
         {isLoginSuccess && <div>Welcome Back !!</div>}
         {loginError && <div>{loginError.message}</div>}
       </Form>
     );
   }
 }
-const mapStateToProps = (state) =>{
-
+const mapStateToProps = state => {
   return {
-      isLoginPending: state.loginFn.isLoginPending,
-      isLoginSuccess: state.loginFn.isLoginSuccess,
-      loginError: state.loginFn.loginError,
-      user: state.loginFn.user,
-      // visibleModal: state.loginFn.visibleModal,
+    isLoginPending: state.loginFn.isLoginPending,
+    isLoginSuccess: state.loginFn.isLoginSuccess,
+    loginError: state.loginFn.loginError,
+    user: state.loginFn.user
+    // visibleModal: state.loginFn.visibleModal,
   };
-}
+};
 
-const dispatchToProps = (dispatch) =>{
+const dispatchToProps = dispatch => {
   return {
-      login: (username, password) => dispatch (login(username, password)),
-      
-  }
-}
+    login: (username, password) => dispatch(login(username, password))
+  };
+};
 
 const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 
 export default withRouter(
-  connect(mapStateToProps, dispatchToProps)(WrappedNormalLoginForm));
+  connect(
+    mapStateToProps,
+    dispatchToProps
+  )(WrappedNormalLoginForm)
+);

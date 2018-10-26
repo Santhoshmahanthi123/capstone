@@ -27,6 +27,7 @@ class Cards extends Component {
     };
     return (
       <div
+      // {...formItemLayout}
         style={{
           background: "#fff",
           padding: "30px",
@@ -34,10 +35,10 @@ class Cards extends Component {
           fontFamily: "Verdana"
         }}
       >
-        <Row gutter={16} {...formItemLayout} style={{ paddingBottom: 20 }}>
+        <Row gutter={16}  style={{ paddingBottom: 20 }}>
           {da.map((product, index) => {
             return (
-              <Col span={8} key={index}>
+              <Col xs={24} md={12} lg={8} key={index}>
                 <Card
                   title={product.title}
                   bordered={true}
@@ -51,7 +52,7 @@ class Cards extends Component {
                   headStyle={{ color: "white", fontStyle: "italic" }}
                 >
                   <table>
-                    <tbody>
+                    <tbody style={{fontSize:15}}>
                       <tr>
                         <td>
                           <Link
@@ -59,12 +60,13 @@ class Cards extends Component {
                               pathname: "/Product/" + product._id,
                               state: { data: product }
                             }}
+                            push
                           >
                             <img
                               src={product.image}
                               style={{
-                                width: 70,
-                                height: 70,
+                                width: '70',
+                                height: '70',
                                 marginBottom: 20
                               }}
                             />

@@ -19,12 +19,17 @@ import PrivateRoute from './Containers/privateRoutes';
 import { connect } from 'react-redux';
 
 class Routes extends Component{
+    
     render(){
-        console.log("%%%%%%%%%%%%$%%%%%%%####@@@@", this.props.user)
+        let localUser = localStorage.getItem('user')
+      //  console.log("%%%%%%%%%%%%$%%%%%%%####@@@@", this.props.user)
+   //   console.log("LOCAL STORAGE in ROUTES", localUser)
+
         return(
             <Switch>
                 {/* <ImageSlider />
                 <Cards /> */}
+                <Route path="/" component= {Homebasic}/>
                 <Route path="/Home" component= {Homebasic}/>
                 <Route exact path="/login" component = {Login}/>
                 <Route path="/Signup" component = {Signup}/>
@@ -35,16 +40,13 @@ class Routes extends Component{
                 <Route path="/Signup" component = {Signup}/>
                 <Route path="/Product/chat" component = {Chat}/>
                 <Route path="/ReportUs" component = {ReportUs}/>
-                <PrivateRoute path="/Profile" component = {Profile} currentUser={this.props.user}/>
+                <PrivateRoute path="/Profile" component = {Profile} currentUser={localUser}/>
                 <Route exact path="/Product/:id" component = {Product}/>
-                <PrivateRoute exact path="/Product/:id/CartItem" component = {CartItem} currentUser={this.props.user}/>
-                <PrivateRoute exact path="/product/:id/payment" component = {Payment} currentUser={this.props.user}/>
-                {/* How to build the below product route */}
-                {/* <Route path="/category/subcategory/productid" component = {Product}/>                 */}
-                {/* <Route/> */}
+                <PrivateRoute exact path="/Product/:id/CartItem" component = {CartItem} currentUser={localUser}/>
+                <PrivateRoute exact path="/product/:id/payment" component = {Payment} currentUser={localUser}/>
+                
                 <Route component={PageNotFound} />
 
-                {/* Implement the logic for secured routes for cart, product, payment, chat */}
             </Switch>
         )
     }

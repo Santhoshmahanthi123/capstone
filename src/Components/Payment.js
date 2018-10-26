@@ -31,7 +31,7 @@ const onToken = (amount, description) => token =>
 const Checkout = ({ name, description, amount }) =>
   <div>
     {/* <Button style={{backgroundImage: 'linearGradient(rgb(125, 197, 238), rgb(0, 140, 221) 85%, rgb(48, 162, 228))', fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', fontSize: 14, position: 'relative', padding: '0 12', display: 'block', height: 30, lineHeight: 30, color: 'rgb(255, 255, 255)', fontWeight: 'bold', boxShadow: 'rgba(255, 255, 255, 0.25) 0 1 0 inset', textShadow: 'rgba(0, 0, 0, 0.25) 0 -1 0', borderRadius: 4}}>COD</Button> */}
-  <Button onClick={()=>{alert("Please pay money to the seller on meeting")}} style={{padding:'0 12 0 12',background: 'linear-gradient(rgb(40, 160, 229), rgb(1, 94, 148))', border: 0, padding: 1, textDecoration: 'none', borderRadius: 5, boxShadow: 'rgba(0, 0, 0, 0.2) 0 1 0', cursor: 'pointer', visibility: 'visible', userSelect: 'none', color:'white'}}>Cash on Delivery</Button>
+  <Button onClick={()=>{alert("Please pay money to the seller on meeting")}} style={{fontWeight: 700,fontFamily: 'Helvetica',padding:7,background: 'linear-gradient(rgb(40, 160, 229), rgb(50, 120, 158))', border: 'none', textDecoration: 'none', borderRadius: 5, boxShadow: 'rgba(0, 0, 0, 0.2) 0 1 0', cursor: 'pointer', visibility: 'visible', userSelect: 'none', color:'white',marginRight: 20}}>Cash on Delivery</Button>
   <StripeCheckout
     name={name}
     description={description}
@@ -54,5 +54,5 @@ export default Checkout;
   // user-select: none;
   // margin-right: 20px;
   // color: white;
-  // font-family: 'Helvetica';
+  // fontFamily: 'Helvetica';
   // font-weight: 700

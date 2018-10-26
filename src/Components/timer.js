@@ -58,13 +58,14 @@ class Timer extends Component {
   
     render() {
         if(this.state.expired){
+          alert("Session Expired")
             return <Redirect 
             to="/Home" />
         }
       return(
         <div>
-          {/* <button onClick={this.startTimer}>Start</button> */}
-          m: {this.state.time.m} s: {this.state.time.s}
+          <span>Time Left </span>
+          [m: {this.state.time.m} s: {this.state.time.s}]
         </div>
       );
     }

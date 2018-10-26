@@ -5,7 +5,7 @@ import { ChatManager, TokenProvider } from '@pusher/chatkit'
 /** Replace these with your own API keys, username and roomId from Chatkit  */
 const testToken = "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/04487c9a-3902-4e8e-9333-fb522f76fd68/token"
 const instanceLocator = "v1:us1:04487c9a-3902-4e8e-9333-fb522f76fd68"
-const roomId = 19292455
+const roomId = 19372247
 const username = 'Nikhita'
 
 class Chat extends Component{

@@ -3,10 +3,8 @@ import React, { Component } from 'react'
 class ReportUs extends Component{
     render(){
         return(
-            <div>
-               <input type='email' placeholder="Enter Your Email ID"/><br/><br/>
-               <input type='text' placeholder="Type Your Message"/><br/><br/>
-                <input type="button" value="Send"/>
+            <div style={{ background: "#0f293a", minHeight: 200 }}>
+               <div style={{color:'white', fontStyle:'italic',margin:'auto', fontSize:25}}><br/><br/>Mail has been sent!</div>
             </div>
         )
     }
