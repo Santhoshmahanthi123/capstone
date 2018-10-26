@@ -69,37 +69,44 @@ app.use('/public/uploads', express.static(path.join(__dirname, 'public/uploads')
 
 
 //mail code start 
-// const transporter = nodemailer.createTransport({
-//     service : 'gmail',
-//     auth: {
-//         type: 'OAuth2',
-//             user: 'vadlakonda.raghu5@gmail.com',
-//             clientId: '656338103307-q3bfioqqcls46q2epjsus4ora24js194.apps.googleusercontent.com',
-//             clientSecret: 'g9kS8aUEyEXk2Cs7uXDIeHxL',
-//             refreshToken: '1/oH3w-MQMElpTQXIhjGA2yloSKh7psSPaYd07s1fIpnk',
-//             accessToken: 'ya29.GltBBo437FrfyYz9_jgXqDlYIeSv28M4dX3TtF5shmAS3zxGuJiK2vRQWaixv1AQWAO1RKPKlwtHRKJ1u2z6s5ODRryJdyKG3L60oKer0SkrjEsdlaw7_sD-ySlH'
+const transporter = nodemailer.createTransport({
+    service : 'gmail',
+    auth: {
+        type: 'OAuth2',
+            user: 'vadlakonda.raghu5@gmail.com',
+            clientId: '656338103307-q3bfioqqcls46q2epjsus4ora24js194.apps.googleusercontent.com',
+            clientSecret: 'g9kS8aUEyEXk2Cs7uXDIeHxL',
+            refreshToken: '1/oH3w-MQMElpTQXIhjGA2yloSKh7psSPaYd07s1fIpnk',
+            accessToken: 'ya29.GltBBo437FrfyYz9_jgXqDlYIeSv28M4dX3TtF5shmAS3zxGuJiK2vRQWaixv1AQWAO1RKPKlwtHRKJ1u2z6s5ODRryJdyKG3L60oKer0SkrjEsdlaw7_sD-ySlH'
  
  
-//     }
-//  })
+    }
+ })
  
-//  app.get('/mail',(req,res)=>{})
-//  const mailOptions = {
-//     from : 'Raghunath <vadlakonda.raghu5@gmail.com>',
-//     to: 'singumahanthisanthosh@gmail.com',
-//     subject : 'This mail from InNeed',
-//     text: 'Hi, This from InNeed Thank You for your vauable Feedback!'
-//  }
- 
-//  transporter.sendMail(mailOptions,(err, res)=>{
-//     if(err) {
-//         console.log('Error');
-//     }
-//     else {
-//         console.log('Email sent');
-//     }
-//  });
+ const mailOptions = {
+    from : 'Raghunath <vadlakonda.raghu5@gmail.com>',
+    to: 'singumahanthisanthosh@gmail.com',
+    subject : 'This mail from InNeed',
+    text: 'Hi, This from InNeed Thank You for conatcting us we will get back to you soon!'
+ }
 
+ app.post('/mail',(req,res)=>{
+    console.log('working')
+    transporter.sendMail(mailOptions,(err, info)=>{
+        console.log('inside')
+
+        if(err) {
+            console.log('Error');
+        }
+        else {
+            console.log('Email sent');
+            return res.json({"Message:":"E-mail is sent"});
+
+        }
+     });
+    
+ });
+ 
  //ends mail code
 
 app.use((req,res,next)=>{
