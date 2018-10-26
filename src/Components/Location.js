@@ -7,7 +7,7 @@ export class MapContainer extends React.Component {
   state = { userLocation: { lat: 32, lng: 32 }, loading: true , address: null};
 
   componentWillMount() {
-   Geocode.setApiKey("AIzaSyBWYsAUIijP97VJ02SVGWOe1CimwZXt7FY");
+   Geocode.setApiKey("AIzaSyCMxnC7Trqw7pFWklpPlYt4ZNcM2ow0VYk");
     navigator.geolocation.getCurrentPosition(
       position => {
         console.log("##############", position);
@@ -52,6 +52,6 @@ export class MapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyB7u8Qzi6Ca4e5DwMN9uIRfJEnHDOKNEt8"
+  apiKey: "AIzaSyCMxnC7Trqw7pFWklpPlYt4ZNcM2ow0VYk"
 })(MapContainer);
 
