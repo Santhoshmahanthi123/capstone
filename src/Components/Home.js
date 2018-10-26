@@ -80,7 +80,7 @@ class Home extends Component {
             <Menu.Item key="7">
               {" "}
               <Icon type="shop" />
-              <span><Link to="">Misc</Link></span>
+              <span><Link to="">Miscellaneous</Link></span>
             </Menu.Item>
             {/* <Menu.Item key="8">Bill</Menu.Item>
               <Menu.Item key="9">Alex</Menu.Item> */}

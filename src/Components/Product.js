@@ -56,7 +56,7 @@ class Product extends Component {
     console.log("^^^^^^^^^^^^^^^^^^^^^^^", data);
     let { id } = this.props.match.params;
     console.log("()()()()()()()-----------", id);
-    if (this.state.buyClicked) {
+    if (this.state.buyClicked ) {
       console.log("BUYYYY CLICKEDDDD");
       return (
         <Redirect

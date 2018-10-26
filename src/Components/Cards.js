@@ -15,7 +15,16 @@ class Cards extends Component {
     console.log(this.props.data, "%%%%%%%%%%%%%%%%%%");
     let da = this.props.data;
     console.log(da, "++++++++++++++++++++");
-
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 8 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 16 }
+      }
+    };
     return (
       <div
         style={{
@@ -25,7 +34,7 @@ class Cards extends Component {
           fontFamily: "Verdana"
         }}
       >
-        <Row gutter={16} style={{ paddingBottom: 20 }}>
+        <Row gutter={16} {...formItemLayout} style={{ paddingBottom: 20 }}>
           {da.map((product, index) => {
             return (
               <Col span={8} key={index}>
