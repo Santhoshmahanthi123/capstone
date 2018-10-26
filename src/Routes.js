@@ -16,6 +16,7 @@ import CartItem from './Components/CartItem';
 import Profile from './Components/Profile';
 import Payment from './Components/Payment';
 import PrivateRoute from './Containers/privateRoutes';
+import PrivateLoginRoute from './Containers/privateLoginRoute';
 import { connect } from 'react-redux';
 
 class Routes extends Component{
@@ -29,9 +30,9 @@ class Routes extends Component{
             <Switch>
                 {/* <ImageSlider />
                 <Cards /> */}
-                <Route path="/" component= {Homebasic}/>
+                <Route exact path="/" component= {Homebasic}/>
                 <Route path="/Home" component= {Homebasic}/>
-                <Route exact path="/login" component = {Login}/>
+                <PrivateLoginRoute exact path="/login" component = {Login} currentUser={localUser}/>
                 <Route path="/Signup" component = {Signup}/>
                 <Route exact path="/postAd" component = {PostAd} />
                 <Route exact path="/foods" component = {Snacks}/>
@@ -39,7 +40,7 @@ class Routes extends Component{
                 <Route path="/Home" component = {Cards}/>
                 <Route path="/Signup" component = {Signup}/>
                 <Route path="/Product/chat" component = {Chat}/>
-                <Route path="/ReportUs" component = {ReportUs}/>
+                <PrivateRoute path="/ReportUs" component = {ReportUs} currentUser={localUser}/>
                 <PrivateRoute path="/Profile" component = {Profile} currentUser={localUser}/>
                 <Route exact path="/Product/:id" component = {Product}/>
                 <PrivateRoute exact path="/Product/:id/CartItem" component = {CartItem} currentUser={localUser}/>

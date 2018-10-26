@@ -4,20 +4,11 @@ import {
   Form,
   Select,
   InputNumber,
-  Switch,
-  Radio,
-  Slider,
   Button,
   Upload,
   Icon,
-  Rate,
   message,
   Input,
-  Tooltip,
-  Cascader,
-  Row,
-  Col,
-  Checkbox,
   AutoComplete
 } from "antd";
 import axios from 'axios'
@@ -55,19 +46,29 @@ class PostAd extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log("VALUESSSS", values)
-        // var fd= new FormData();
-        // fd.append(values);
-        // fd.append(userId)
-        // console.log("Received values of form: ", fd);
+        var fd= new FormData();
+        fd.append('title', values.title);
+        fd.append('description', values.description);
+        fd.append('price', values.price);
+        fd.append('quantity', values.quantity);
+        fd.append('image', this.state.image);
+        fd.append('user',userId)
+        console.log("Received values of form: ", fd);
 
         this.setState({
           isSaved: true
         });
-        let data = {
-          title: values.title,
-          
-        }
-        axios.post("https://capstone-inneed.herokuapp.com/medicines", values)
+        
+        // let data = {
+        //   title: values.title,
+        //   description: values.description,
+        //   price: values.price,
+        //   quantity: values.quantity,
+        //   image: this.state.image,
+        //   user:userId
+        // }
+      //  console.log("DATATATATATATATA", data)
+        axios.post("https://capstone-inneed.herokuapp.com/medicines", fd)
         .then((Response)=>{
           alert("Successfully added the product!!");
           console.log("RESPONSE FROM UPLOADING", Response)
@@ -137,7 +138,7 @@ class PostAd extends Component {
           })(<Input />)}
         </FormItem>
         <FormItem {...formItemLayout} label="Quantity">
-          {getFieldDecorator("input-number", { initialValue: 2 })(
+          {getFieldDecorator("quantity", { initialValue: 2 })(
             <InputNumber min={1} max={20} />
           )}
         </FormItem>
@@ -168,11 +169,12 @@ class PostAd extends Component {
             valuePropName: "fileList",
             getValueFromEvent: this.normFile
           })(
-            <Upload {...props}>
-              <Button>
-                <Icon type="upload" /> Click to Upload
-              </Button>
-            </Upload>
+            // <Upload {...props}>
+            //   <Button>
+            //     <Icon type="upload" /> Click to Upload
+            //   </Button>
+            // </Upload>
+            <input type="file" name="upload" onChange={(e) => this.setState({image: e.target.files[0]})}/>
           )}
         </FormItem>
 

@@ -41,7 +41,7 @@ class Homebasic extends Component {
       <div  >
         <Carousel className="Carousel" autoplay >
           <div>
-          <img src="../food1.jpg"/>
+          <img src="../h2.jpg"/>
           </div>
           <div>
           <img src="../food2.jpg"/>

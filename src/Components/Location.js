@@ -7,7 +7,7 @@ export class MapContainer extends React.Component {
   state = { userLocation: { lat: 32, lng: 32 }, loading: true , address: null};
 
   componentWillMount() {
-   Geocode.setApiKey("AIzaSyABr5_Vg24LPsXq_sdk23S7cz58iGAa0hg");
+   Geocode.setApiKey("AIzaSyBWYsAUIijP97VJ02SVGWOe1CimwZXt7FY");
     navigator.geolocation.getCurrentPosition(
       position => {
         console.log("##############", position);
@@ -22,6 +22,7 @@ export class MapContainer extends React.Component {
             const address = response.results[0].formatted_address;
             console.log(response.results[0],"**********ADDRESS**********");
             console.log(response.results[0].short_name,"**********ADDRESS**********");
+            localStorage.setItem('address', address);
             this.setState({
               address: address
             })
@@ -42,12 +43,11 @@ export class MapContainer extends React.Component {
   render() {
     const { loading, userLocation } = this.state;
     const { google } = this.props;
-
     if (loading) {
       return null;
     }
 
-    return <h3>{this.state.address}</h3>;
+    return <h3>{localStorage.getItem('address')}</h3>;
   }
 }
 
