@@ -27,7 +27,7 @@ class Home extends Component {
     this.setState({ collapsed });
   };
   reportClick  =()=>{
-    axios.post("https://capstone-inneed.herokuapp.com/mail")
+    axios.post("https://inneed-back-end.herokuapp.com/mail")
       .then((response)=>{
         alert("Mail Sent")
       })

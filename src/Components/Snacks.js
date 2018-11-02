@@ -16,7 +16,7 @@ class Snacks extends Component{
     }
   async componentDidMount() {
        await Axios
-          .get("https://capstone-inneed.herokuapp.com/foods")
+          .get("https://inneed-back-end.herokuapp.com/foods")
           .then ((response) => {
             console.log(response,"(_____))))((((");
             this.setState({

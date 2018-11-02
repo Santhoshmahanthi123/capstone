@@ -68,7 +68,7 @@ class PostAd extends Component {
         //   user:userId
         // }
       //  console.log("DATATATATATATATA", data)
-        axios.post("https://capstone-inneed.herokuapp.com/medicines", fd)
+        axios.post("https://inneed-back-end.herokuapp.com/medicines", fd)
         .then((Response)=>{
           alert("Successfully added the product!!");
           console.log("RESPONSE FROM UPLOADING", Response)

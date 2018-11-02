@@ -45,7 +45,7 @@ export function displayProduct() {
     dispatch(setProductPending(true));
     dispatch(setProductError(null));
     Axios
-      .get("https://capstone-inneed.herokuapp.com/medicines")
+      .get("https://inneed-back-end.herokuapp.com/medicines")
       .then((response) => {
         console.log(response,"$$$$$$$$@@@@");
         console.log(response.data.medicines,"!!!!!!!!!!!!!!!!");

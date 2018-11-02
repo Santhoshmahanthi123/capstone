@@ -60,7 +60,7 @@ export function login(username, password) {
     // Axios.get('https://e-commerce-application.herokuapp.com/login',{username, password} )
     //login should be a post request and not a get request
     Axios({
-      url: 'https://capstone-inneed.herokuapp.com/user/login',
+      url: 'https://inneed-back-end.herokuapp.com/user/login',
       method: "post",
       //headers: {'Content-Type': 'application/json'},
       data: {

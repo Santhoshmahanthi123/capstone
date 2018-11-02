@@ -41,7 +41,7 @@ class Product extends Component {
   };
   handleMessageClick = () => {
     // call backend route for messaging
-    Axios.get("https://capstone-inneed.herokuapp.com/twilio")
+    Axios.get("https://inneed-back-end.herokuapp.com/twilio")
       .then(response => {
         console.log(response, "%%%%%^^^^^^$$$$$$$$");
         alert("Message sent! You can soon expect a call back!!");

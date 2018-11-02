@@ -63,7 +63,7 @@ export function signupFn(name, email, password, mobile, address, pincode) {
     //error coming because the fxn call is not returning a promise. Better to use axios here so that a promise is returned
     // .then(userData =>{
     Axios({
-      url: 'https://capstone-inneed.herokuapp.com/user/signup',
+      url: 'https://inneed-back-end.herokuapp.com/user/signup',
       method: "post",
       //headers: {'Content-Type': 'application/json'},
       data: {
