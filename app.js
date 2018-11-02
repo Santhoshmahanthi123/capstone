@@ -20,9 +20,15 @@ console.log( process.env.JWTKEY);
 const DATABASEURL=process.env.DATABASEURL;
 const SID = process.env.SID;
 const TOKEN = process.env.TOKEN;
+const user = process.env.user;
+const clientId = process.env.clientId;
+const clientSecret = process.env.clientSecret;
+const refreshToken = process.env.refreshToken;
+const accessToken = process.env.accessToken;
 const client = require('twilio')(SID,TOKEN);
 console.log(process.env.DATABASEURL);
 console.log(process.env.SID,process.env.TOKEN);
+console.log('#################',clientId);
 mongoose.connect(DATABASEURL,{useNewUrlParser: true})
 //removing deprecation warnings 
 mongoose.Promise = global.Promise;
@@ -73,11 +79,11 @@ const transporter = nodemailer.createTransport({
     service : 'gmail',
     auth: {
         type: 'OAuth2',
-            user: 'vadlakonda.raghu5@gmail.com',
-            clientId: '656338103307-q3bfioqqcls46q2epjsus4ora24js194.apps.googleusercontent.com',
-            clientSecret: 'g9kS8aUEyEXk2Cs7uXDIeHxL',
-            refreshToken: '1/oH3w-MQMElpTQXIhjGA2yloSKh7psSPaYd07s1fIpnk',
-            accessToken: 'ya29.GltBBo437FrfyYz9_jgXqDlYIeSv28M4dX3TtF5shmAS3zxGuJiK2vRQWaixv1AQWAO1RKPKlwtHRKJ1u2z6s5ODRryJdyKG3L60oKer0SkrjEsdlaw7_sD-ySlH'
+            user: 'user',
+            clientId: 'clientId',
+            clientSecret: 'clientSecret',
+            refreshToken: 'refreshToken',
+            accessToken: 'accessToken'
  
  
     }
