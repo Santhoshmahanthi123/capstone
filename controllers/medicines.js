@@ -12,7 +12,7 @@ exports.medicines_get_all = (req, res, next) => {
             medicines : docs.map(doc => {
                 return {
                     title : doc.title,
-                    image : 'https://capstone-inneed.herokuapp.com/public/uploads/'+doc.image,
+                    image : 'https://inneed-back-end.herokuapp.com/public/uploads/'+doc.image,
                     price : doc.price,
                     _id   : doc._id,
                     quantity : doc.quantity,
@@ -20,7 +20,7 @@ exports.medicines_get_all = (req, res, next) => {
                     user : doc.user,
                 // request : {
                 //     type : 'GET',
-                //     url : 'https://capstone-inneed.herokuapp.com/medicines/' + doc._id
+                //     url : 'https://inneed-back-end.herokuapp.com/medicines/' + doc._id
 
                 //      }
                 };
@@ -58,7 +58,7 @@ exports.medicines_create_medicine = (req, res, next) => {
             createdMedicine : medicine,
             // request : {
             //     type : "GET",
-            //     url : "https://capstone-inneed.herokuapp.com/medicines/" + result._id
+            //     url : "https://inneed-back-end.herokuapp.com/medicines/" + result._id
             // }
         });
     
@@ -82,7 +82,7 @@ exports.medicines_get_medicine = (req, res, next) => {
                 Medicine : doc,
                 // request : {
                 //     type : 'GET',
-                //     url : "https://capstone-inneed.herokuapp.com/medicines/" + doc._id
+                //     url : "https://inneed-back-end.herokuapp.com/medicines/" + doc._id
                 // }
              });
         } else {
@@ -110,7 +110,7 @@ exports.medicines_delete_medicine = (req, res, next) => {
          message : 'Medicine item deleted!',
         //  request : {
         //      type : 'POST',
-        //      url : "https://capstone-inneed.herokuapp.com/medicines",
+        //      url : "https://inneed-back-end.herokuapp.com/medicines",
         //      body : {
         //          title : 'String',
         //          price : 'Number'

@@ -13,7 +13,7 @@ exports.foods_get_all = (req, res, next) => {
             foods : docs.map(doc => {
                 return {
                     title : doc.title,
-                    image : 'https://capstone-inneed.herokuapp.com/public/uploads/'+doc.image,
+                    image : 'https://inneed-back-end.herokuapp.com/public/uploads/'+doc.image,
                     price : doc.price,
                     _id   : doc._id,
                     quantity : doc.quantity,
@@ -61,7 +61,7 @@ exports.foods_create_food = (req, res, next) => {
             createdFood : food,
             // request : {
             //     type : "GET",
-            //     url : "https://capstone-inneed.herokuapp.com/foods" + result._id
+            //     url : "https://inneed-back-end.herokuapp.com/foods" + result._id
             // }
         });
     
@@ -85,7 +85,7 @@ exports.foods_get_food = (req, res, next) => {
                 Food : doc,
                 // request : {
                 //     type : 'GET',
-                //     url : "https://capstone-inneed.herokuapp.com/foods" + doc._id
+                //     url : "https://inneed-back-end.herokuapp.com/foods" + doc._id
                 // }
              });
         } else {
@@ -111,7 +111,7 @@ exports.foods_delete_food = (req, res, next) => {
          message : 'Food item deleted!',
         //  request : {
         //      type : 'POST',
-        //      url : "https://capstone-inneed.herokuapp.com/foods",
+        //      url : "https://inneed-back-end.herokuapp.com/foods",
         //      body : {
         //          title : 'String',
         //          price : 'Number'

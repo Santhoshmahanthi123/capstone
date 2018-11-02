@@ -80,7 +80,7 @@ exports.orders_get_order = (req,res,next)=>{
             order : order,
 //             request:{
 //                 type :'GET',
-//                 url :'https://capstone-inneed.herokuapp.com/orders'
+//                 url :'https://inneed-back-end.herokuapp.com/orders'
 //  ,
 //             }
         });
@@ -102,7 +102,7 @@ exports.orders_get_order = (req,res,next)=>{
         message : 'Order deleted!',
         // request : {
         //     type : 'POST',
-        //     url : 'https://capstone-inneed.herokuapp.com/products',
+        //     url : 'https://inneed-back-end.herokuapp.com/orders',
         //     body : {
         //         productId : 'ID',
         //         quantity : 'Number'
